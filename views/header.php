@@ -64,7 +64,7 @@
     <!--========== HEADER ==========-->
     <header class="header">
         <div class="header__container">
-            <a href="#" class="header__logo">Sistema de Horas</a>
+            <a href="#" class="header__logo">Projeto Integrador</a>
             <?php if(isset($_SESSION['logado'])) { ?>
                 <?php if(isset($_SESSION['NOME'])) { ?>
                     <a href="#" class="header__logo"><?php echo$_SESSION['NOME'] ?></a>
