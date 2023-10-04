@@ -16,6 +16,7 @@
 
     <!-- Core theme CSS (includes Bootstrap) -->
     <link rel="stylesheet" href="<?= URL ?>public/css/main.css">
+    <link rel="stylesheet" href="css/cdn.jsdelivr.net_npm_swiper@10.2.0_swiper-bundle.min.css ">
 
     <!-- Essentail JS2 for Vue  (All components Styles) -->
     <link href="https://cdn.syncfusion.com/ej2/20.1.55/material.css" rel="stylesheet" type="text/css" />
@@ -129,5 +130,6 @@
             methods: {}
         })
     </script>
-
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </body>
