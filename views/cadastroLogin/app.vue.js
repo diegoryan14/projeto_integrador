@@ -1,52 +1,39 @@
 const AppTemplate = `
-<div class="container">
-    <div class="forms-container">
-        <div class="signin-signup">
-            <form class="sign-in-form">
-                <h2 class="title">Faça login</h2>
-                <div class="input-field">
-                    <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Usuário">
+<div id="forms-cad" style='height: 100vh;'>
+    <div id="form-right">
+        <div id="formulario-cadastro" class="row">
+            <h1>CADASTRE-SE</h1>
+            <!-- ******************NOME*************** -->
+            <div class="row">
+                <div class="col-md-12 margin-input">
+                    <ejs-textbox floatLabelType="Auto" cssClass="e-outline" placeholder="Nome"></ejs-textbox>
                 </div>
-                <div class="input-field">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Senha">
-                </div>
-                <input type="submit" value="Login" class="btn solid">
-            </form>
-            <form class="sign-up-form">
-                <h2 class="title">Cadastre-se</h2>
-                <div class="input-field">
-                    <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Usuário">
-                </div>
-                <div class="input-field">
-                    <i class="fas fa-envelope"></i>
-                    <input class="input-transparent" type="email" placeholder="Email">
-                </div>
-                <div class="input-field">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Senha">
-                </div>
-                <input type="submit" value="Cadastre-se" class="btn solid">
-            </form>
-        </div>
-    </div>  
-    <div class="panels-container">
-        <!-- Primeiro Painel -->
-        <div class="panel left-panel">
-            <div class="content">
-                <h3>Novo por aqui?</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nostrum nisi dicta.</p>
-                <button class="btn transparent" id="sign-up-btn">Cadastre-se</button>
             </div>
-        </div>
-        <!-- Segundo Painel -->
-        <div class="panel right-panel">
-            <div class="content">
-                <h3>Já possui um cadastro?</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nostrum nisi dicta.</p>
-                <button class="btn transparent" id="sign-in-btn">Faça login</button>
+            <!-- ******************EMAIL*************** -->
+            <div class="row">
+                <div class="col-md-6 margin-input">
+                    <ejs-textbox floatLabelType="Auto" cssClass="e-outline" placeholder="Email"></ejs-textbox>
+                </div>
+                <!-- ******************CPF*************** -->
+                <div class="col-md-6 margin-input">
+                    <ejs-textbox floatLabelType="Auto" cssClass="e-outline" placeholder="CPF"></ejs-textbox>
+                </div>
+            </div>
+            <!-- ******************SENHA*************** -->
+            <div class="row">
+                <div class="col-md-6 margin-input">
+                    <ejs-textbox floatLabelType="Auto" cssClass="e-outline" placeholder="Senha"></ejs-textbox>
+                </div>
+                <div class="col-md-6 margin-input">
+                    <ejs-textbox floatLabelType="Auto" cssClass="e-outline" placeholder="Confirmação de Senha"></ejs-textbox>
+                </div>
+            </div>
+            <!-- BOTÃO -->
+            <div class="row">
+                <div class="col-md-12 margin-input">
+                    <ejs-progressbutton id="zoomin" content="Zoom In" :enableProgress="true" :spinSettings="spinCenter" :animationSettings="zoomIn"
+                    cssClass="e-round-corner"></ejs-progressbutton>
+                </div>
             </div>
         </div>
     </div>
@@ -57,6 +44,8 @@ Vue.component('AppVue', {
     template: AppTemplate,
     data: function() {
         return {
+            spinCenter : { position: 'Center' },
+            zoomIn : { effect: 'ZoomIn' }
         }
     },
     methods: {
