@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $this->title; ?></title>
 
+    <!-- FONTE -->
+    <link href="https://fonts.cdnfonts.com/css/lexend-deca" rel="stylesheet">
+                
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="<?= URL ?>public/assets/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
