@@ -15,8 +15,8 @@ class Login extends Controller {
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
         array_push($this->view->js, "views/login/login.vue.js");
         array_push($this->view->css, "views/login/login.vue.css");
-        $this->view->render("login/header");
-        $this->view->render("footer");
+        // $this->view->render("login/header");
+        // $this->view->render("footer");
     }
 
     function Login()

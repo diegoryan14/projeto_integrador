@@ -10,8 +10,6 @@ Vue.component("AppVue", {
   template: AppTemplate,
   data() {
     return {
-        input: {
-        }
     }
   },
     methods: {
