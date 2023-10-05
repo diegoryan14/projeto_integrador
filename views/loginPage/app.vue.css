@@ -50,7 +50,11 @@ header, .nav{
     background-size: 30% 43%;
     z-index: -999; /* Garante que a nova imagem fique acima da imagem de fundo original */
 }
-
+#zoomin {
+    padding: 1em 4em;
+    background-color: #003264;
+    color: white !important;
+}
 
 /* RESPOSIVIDADE */
 
