@@ -53,9 +53,6 @@ const AppTemplate = `
             <!-- ******************SENHA*************** -->
             <div class="row">
                 <div class="col-md-6 margin-input" style="margin-top: 6px;">
-                    <ejs-textbox floatLabelType="Auto" cssClass="e-outline" placeholder="Senha" type="password"></ejs-textbox>
-                </div>
-                <div class="col-md-6 margin-input" style="margin-top: 6px;">
                     <ejs-textbox 
                         floatLabelType="Auto"
                         ref="senha"
@@ -157,8 +154,17 @@ Vue.component('AppVue', {
                     return;
                 }
                 alert(res.data.msg);
+                this.limpar_campos();
+                window.location.href = BASE + '/index/';
                 return;
             })
+        },
+        limpar_campos(){
+            this.input.nome = null;
+            this.input.email = null;
+            this.input.cpf = null;
+            this.input.senha = null;
+            this.input.confirm_senha = null;
         }
     },
     mounted(){
