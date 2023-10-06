@@ -86,7 +86,11 @@ Vue.component('AppVue', {
                 'SENHA': this.input.senha
             }
             axios.post(BASE + "/loginPage/Login",obj).then((res) => {
-                console.log(res);
+                if(res.data.code == '0'){
+                    alert(res.data.msg);
+                    return;
+                }
+                window.location.href = BASE + '/index/'
             })
         }
     },

@@ -149,7 +149,7 @@ Vue.component('AppVue', {
                 'CONFIRM_SENHA': this.input.confirm_senha
             }
             axios.post(BASE + "/cadastroLogin/Cadastrar_usuario",obj).then((res) => {
-                if(res.data.code == 0){
+                if(res.data.code == '0'){
                     alert(res.data.msg);
                     return;
                 }
