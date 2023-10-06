@@ -21,4 +21,9 @@ class CadastroLogin extends Controller
         $this->view->render('footer');
     }
 
+    function Cadastrar_usuario()
+    {
+        $this->model->Cadastrar_usuario();
+    }
+
 }
