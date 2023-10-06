@@ -40,19 +40,23 @@ const AppTemplate = `
             </div>
             <!-- BOTÃO -->
             <div class="row text-center" style="margin-top: 2em">
-                <div class="col-md-8 margin-input">
-                    <ejs-progressbutton 
-                        id="zoomin"
-                        content="ENTRAR"
-                        v-on:click.native="Login"
-                        :enableProgress="true"
-                        :spinSettings="spinCenter"
-                        :animationSettings="zoomIn"
-                        cssClass="e-round-corner">
-                    </ejs-progressbutton>
-                </div>
-                <div class="col-md-8 margin-input">
-                    <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='btnClick'>Não tem login? Cadastre-se</ejs-button>
+                <div class="col-md-12 margin-input">
+                    <div class="col-md-8 margin-input">
+                        <ejs-progressbutton 
+                            id="zoomin"
+                            content="ENTRAR"
+                            v-on:click.native="Login"
+                            :enableProgress="true"
+                            :spinSettings="spinCenter"
+                            :animationSettings="zoomIn"
+                            cssClass="e-round-corner">
+                        </ejs-progressbutton>
+                    </div>
+                </div>                
+                <div class="col-md-12 margin-input">
+                    <div class="col-md-8 margin-input">
+                        <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='btnClick'>Não tem login? Cadastre-se</ejs-button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,8 +100,14 @@ Vue.component('AppVue', {
                     alert(res.data.msg);
                     return;
                 }
-                window.location.href = BASE + '/index/'
+                window.location.href = BASE + '/index/';
+                this.limpar_campos();
+                return;
             })
+        },
+        limpar_campos(){
+            this.input.cpf = '';
+            this.input.senha = '';
         }
     },
     mounted(){
