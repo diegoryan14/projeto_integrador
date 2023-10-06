@@ -73,10 +73,12 @@ Vue.component('AppVue', {
         Login(){
             if(this.input.cpf == null || this.input.cpf.trim() == ''){
                 alert('Por Favor, Insira o CPF');
+                this.$refs.CPF.focusIn();
                 return;
             }
             if(this.input.senha == null || this.input.senha.trim() == ''){
                 alert('Por Favor, Insira a senha');
+                this.$refs.senha.focusIn();
                 return;
             }
             var obj = {
