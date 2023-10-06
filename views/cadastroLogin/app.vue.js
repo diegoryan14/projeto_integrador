@@ -53,6 +53,9 @@ const AppTemplate = `
             <!-- ******************SENHA*************** -->
             <div class="row">
                 <div class="col-md-6 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox floatLabelType="Auto" cssClass="e-outline" placeholder="Senha" type="password"></ejs-textbox>
+                </div>
+                <div class="col-md-6 margin-input" style="margin-top: 6px;">
                     <ejs-textbox 
                         floatLabelType="Auto"
                         ref="senha"

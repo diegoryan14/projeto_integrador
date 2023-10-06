@@ -51,6 +51,9 @@ const AppTemplate = `
                         cssClass="e-round-corner">
                     </ejs-progressbutton>
                 </div>
+                <div class="col-md-8 margin-input">
+                    <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='btnClick'>Não tem login? Cadastre-se</ejs-button>
+                </div>
             </div>
         </div>
     </div>
@@ -70,6 +73,9 @@ Vue.component('AppVue', {
         }
     },
     methods: {
+        btnClick() {
+            window.location.href = 'http://localhost/test/projeto_integrador/cadastroLogin';
+        },
         Login(){
             if(this.input.cpf == null || this.input.cpf.trim() == ''){
                 alert('Por Favor, Insira o CPF');
