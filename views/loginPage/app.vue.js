@@ -2,28 +2,54 @@ const AppTemplate = `
 <div id="forms-cad" style='height: 100vh;'>
     <div id="form-right">
         <div id="formulario-cadastro" class="row">
-            <!-- ******************EMAIL*************** -->
             <div class="row">
                 <div class="col-md-8 margin-input">
                     <h1 class="login-text text-center">LOGIN</h1>
                 </div>
             </div>
+            <!-- ******************CPF*************** -->
             <div class="row">
                 <div class="col-md-8 margin-input">
-                    <ejs-textbox floatLabelType="Auto" cssClass="e-outline" placeholder="Email"></ejs-textbox>
+                    <ejs-maskedtextbox
+                        ref="CPF"
+                        id="CPF"
+                        mask="###.###.###-##"
+                        floatLabelType="Auto"
+                        cssClass="e-outline"
+                        maxlength="14"
+                        placeholder='CPF'
+                        v-model="input.cpf">
+                    </ejs-maskedtextbox>
                 </div>
             </div>                
             <!-- ******************SENHA*************** -->
             <div class="row margin-input" style="margin-top: 6px;">
                 <div class="col-md-8 margin-input">
-                    <ejs-textbox floatLabelType="Auto" cssClass="e-outline" placeholder="Senha"></ejs-textbox>
+                    <ejs-textbox 
+                        floatLabelType="Auto"
+                        ref="senha"
+                        id="senha"
+                        v-model="input.senha"
+                        type="password"
+                        style="text-transform: unset;"
+                        maxlength="30"
+                        cssClass="e-outline"
+                        placeholder="Senha">
+                    </ejs-textbox>
                 </div>
             </div>
             <!-- BOTÃO -->
             <div class="row text-center" style="margin-top: 2em">
                 <div class="col-md-8 margin-input">
-                    <ejs-progressbutton id="zoomin" content="ENTRAR" :enableProgress="true" :spinSettings="spinCenter" :animationSettings="zoomIn"
-                    cssClass="e-round-corner"></ejs-progressbutton>
+                    <ejs-progressbutton 
+                        id="zoomin"
+                        content="ENTRAR"
+                        v-on:click.native="Login"
+                        :enableProgress="true"
+                        :spinSettings="spinCenter"
+                        :animationSettings="zoomIn"
+                        cssClass="e-round-corner">
+                    </ejs-progressbutton>
                 </div>
             </div>
         </div>
@@ -36,12 +62,45 @@ Vue.component('AppVue', {
     data: function() {
         return {
             spinCenter : { position: 'Center' },
-            zoomIn : { effect: 'ZoomIn' }
+            zoomIn : { effect: 'ZoomIn' },
+            input: {
+                cpf: null,
+                senha: null
+            }
         }
     },
     methods: {
+        Login(){
+            if(this.input.cpf == null || this.input.cpf.trim() == ''){
+                alert('Por Favor, Insira o CPF');
+                return;
+            }
+            if(this.input.senha == null || this.input.senha.trim() == ''){
+                alert('Por Favor, Insira a senha');
+                return;
+            }
+            var obj = {
+                'CPF': this.input.cpf,
+                'SENHA': this.input.senha
+            }
+            axios.post(BASE + "/loginPage/Login",obj).then((res) => {
+                console.log(res);
+            })
+        }
     },
     mounted(){
+        this.$refs.CPF.focusIn();
+        // this.$refs.senha.addIcon('append', 'fas fa-eye-slash');
+        // document.querySelector('#senha .fa-eye-slash').addEventListener('click', () => {
+        //     if (this.count == 0) {
+        //         this.$refs.senha.ej2Instances.type = 'text';
+        //         this.$refs.senha.$el.parentNode.childNodes[3].classList.value = 'fas fa-eye e-input-group-icon'
+        //         this.count = 1
+        //     } else {
+        //         this.$refs.senha.ej2Instances.type = 'password'
+        //         this.$refs.senha.$el.parentNode.childNodes[3].classList.value = 'fas fa-eye-slash e-input-group-icon'
+        //         this.count = 0
+        //     }
+        // });
     }
-})
-
+});

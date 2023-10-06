@@ -21,4 +21,8 @@ class loginPage extends Controller
         $this->view->render('footer');
     }
 
+    function Login()
+    {
+        $this->model->Login();
+    }
 }
