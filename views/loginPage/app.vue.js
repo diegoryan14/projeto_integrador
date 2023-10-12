@@ -40,16 +40,23 @@ const AppTemplate = `
             </div>
             <!-- BOTÃO -->
             <div class="row text-center" style="margin-top: 2em">
-                <div class="col-md-8 margin-input">
-                    <ejs-progressbutton 
-                        id="zoomin"
-                        content="ENTRAR"
-                        v-on:click.native="Login"
-                        :enableProgress="true"
-                        :spinSettings="spinCenter"
-                        :animationSettings="zoomIn"
-                        cssClass="e-round-corner">
-                    </ejs-progressbutton>
+                <div class="col-md-12 margin-input">
+                    <div class="col-md-8 margin-input">
+                        <ejs-progressbutton 
+                            id="zoomin"
+                            content="ENTRAR"
+                            v-on:click.native="Login"
+                            :enableProgress="true"
+                            :spinSettings="spinCenter"
+                            :animationSettings="zoomIn"
+                            cssClass="e-round-corner">
+                        </ejs-progressbutton>
+                    </div>
+                </div>                
+                <div class="col-md-12 margin-input">
+                    <div class="col-md-8 margin-input">
+                        <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='btnClick'>Não tem login? Cadastre-se</ejs-button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,6 +77,9 @@ Vue.component('AppVue', {
         }
     },
     methods: {
+        btnClick() {
+            window.location.href = 'http://localhost/test/projeto_integrador/cadastroLogin';
+        },
         Login(){
             if(this.input.cpf == null || this.input.cpf.trim() == ''){
                 alert('Por Favor, Insira o CPF');
@@ -86,8 +96,18 @@ Vue.component('AppVue', {
                 'SENHA': this.input.senha
             }
             axios.post(BASE + "/loginPage/Login",obj).then((res) => {
-                console.log(res);
+                if(res.data.code == '0'){
+                    alert(res.data.msg);
+                    return;
+                }
+                window.location.href = BASE + '/index/';
+                this.limpar_campos();
+                return;
             })
+        },
+        limpar_campos(){
+            this.input.cpf = '';
+            this.input.senha = '';
         }
     },
     mounted(){

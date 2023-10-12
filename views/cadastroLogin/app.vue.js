@@ -149,13 +149,22 @@ Vue.component('AppVue', {
                 'CONFIRM_SENHA': this.input.confirm_senha
             }
             axios.post(BASE + "/cadastroLogin/Cadastrar_usuario",obj).then((res) => {
-                if(res.data.code == 0){
+                if(res.data.code == '0'){
                     alert(res.data.msg);
                     return;
                 }
                 alert(res.data.msg);
+                this.limpar_campos();
+                window.location.href = BASE + '/index/';
                 return;
             })
+        },
+        limpar_campos(){
+            this.input.nome = null;
+            this.input.email = null;
+            this.input.cpf = null;
+            this.input.senha = null;
+            this.input.confirm_senha = null;
         }
     },
     mounted(){

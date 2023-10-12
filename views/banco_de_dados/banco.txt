@@ -1,0 +1,13 @@
+create database JOBTRUCKER
+
+use JOBTRUCKER
+
+create table USUARIO(
+	SEQ_USUARIO INT(3) not null auto_increment,
+	NOME VARCHAR(60) not null,
+	EMAIL VARCHAR(50) not null,
+	CPF VARCHAR(14) not null,
+	SENHA VARCHAR(300) not NULL,
+	DECRICAO VARCHAR(100),
+	primary key (SEQ_USUARIO)
+)

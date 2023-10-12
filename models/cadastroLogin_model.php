@@ -12,7 +12,7 @@ class CadastroLogin_Model extends Model
     public function Cadastrar_usuario()
     {
         $post = json_decode(file_get_contents('php://input'));
-        //var_dump($post);exit;
+
         $nome = $post->NOME;
         $CPF = $post->CPF;
         $email = $post->EMAIL;
@@ -38,7 +38,7 @@ class CadastroLogin_Model extends Model
         }
 
         /* DECODIFICAÇAO DA SENHA */
-        $senha_hash = hash('sha256', $senha_final);
+        $senha_hash = hash('sha256', $senha);
 
         if($nome == null){
             exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o Nome.")));
@@ -65,7 +65,6 @@ class CadastroLogin_Model extends Model
 
     }
 }
-
 
 function validaCPF($cpf) {
     // Extrai somente os números

@@ -8,7 +8,7 @@ class Database extends PDO
     {
         $DB_TYPE="mysql";
         $DB_HOST="localhost:3306";
-        $DB_NAME="BANCODEHORAS";
+        $DB_NAME="JOBTRUCKER";
         $DB_USER="root";
         $DB_PASS="";
         try{
