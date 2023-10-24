@@ -1,6 +1,6 @@
 <?php
 
-class CadastroLogin extends Controller
+class loginPage extends Controller
 {
 
     function __construct()
@@ -13,17 +13,16 @@ class CadastroLogin extends Controller
     function index()
     {
         // Auth::autentica();
-        $this->view->title = "Cadastro";
+        $this->view->title = "Login";
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
-        array_push($this->view->js, "views/cadastroLogin/app.vue.js");
-        array_push($this->view->css, "views/cadastroLogin/app.vue.css");
+        array_push($this->view->js, "views/loginPage/app.vue.js");
+        array_push($this->view->css, "views/loginPage/app.vue.css");
         $this->view->render('header');
         $this->view->render('footer');
     }
 
-    function Cadastrar_usuario()
+    function Login()
     {
-        $this->model->Cadastrar_usuario();
+        $this->model->Login();
     }
-
 }
