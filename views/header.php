@@ -152,7 +152,6 @@
             },
             methods: {
             }
-            }
         })
     </script>
 </body>
