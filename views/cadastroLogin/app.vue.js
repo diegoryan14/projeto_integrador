@@ -92,6 +92,9 @@ const AppTemplate = `
                         cssClass="e-round-corner">
                     </ejs-progressbutton>
                 </div>
+                <div class="col-md-12 margin-input">
+                    <ejs-button id="botao-voltar" cssClass='e-link' v-on:click.native='btnClick'>Voltar</ejs-button>
+                </div>
             </div>
         </div>
     </div>
@@ -107,7 +110,7 @@ Vue.component('AppVue', {
             value: '',
             input: {
                 nome: null,
-                email: null,//
+                email: null,
                 cpf: null,
                 senha: null,
                 confirm_senha: null
@@ -115,6 +118,9 @@ Vue.component('AppVue', {
         }
     },
     methods: {
+        btnClick() {
+            window.location.href = 'http://localhost/test/projeto_integrador/loginPage';
+        },
         Cadastrar_usuario(){
             if(this.input.nome == null || this.input.nome.trim() == ''){
                 alert('Por Favor, Insira o Nome');
