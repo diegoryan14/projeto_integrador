@@ -67,7 +67,7 @@
     <!--========== HEADER ==========-->
     <header class="header">
         <div class="header__container">
-            <a href="#" class="header__logo">Projeto Integrador</a>
+            <a href="#" class="header__logo">JOBTRUCKER</a>
             <?php if(isset($_SESSION['logado'])) { ?>
                 <?php if(isset($_SESSION['NOME'])) { ?>
                     <a href="#" class="header__logo"><?php echo$_SESSION['NOME'] ?></a>
@@ -96,22 +96,42 @@
                             <a href="#" class="nav__link">
                                 <i class='bx bx-user nav__icon'></i>
                                 <span class="nav__name">Opções</span>
-                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                            <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                             </a>
-
-                            <div class="nav__dropdown-collapse">
-                                <div class="nav__dropdown-content">
-                                    <a href="<?= URL ?>#" class="nav__dropdown-item">Exemplo</a>
-                                </div>
+                            <div class="nav__dropdown-content">
+                                <a href="<?= URL ?>#" class="nav__dropdown-item">Minhas informações</a>
+                            </div>
+                            <div class="nav__dropdown-content">
+                                <a href="<?= URL ?>#" class="nav__dropdown-item">Minha Carteira</a>
+                            </div>
+                            <div class="nav__dropdown-content">
+                                <a href="<?= URL ?>#" class="nav__dropdown-item">Minhas Entregas</a>
                             </div>
                         </div>
+                        <div class="nav__dropdown">
+                            <a href="#" class="nav__link">
+                                <i class='bx bxs-truck nav__icon'></i>
+                                <span class="nav__name">Meu caminhão</span>
+                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                            </a>
+                            <div class="nav__dropdown-content">
+                                <a href="<?= URL ?>#" class="nav__dropdown-item">Informações</a>
+                            </div>
+                            <div class="nav__dropdown-content">
+                                <a href="<?= URL ?>#" class="nav__dropdown-item">Cadastrar Caminhão</a>
+                            </div>
+                        </div>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-signal-5 nav__icon'></i>
+                            <span class="nav__name">Empresas</span>
+                        </a>
                     </div>
                 </div>
             </div>
 
             <a href="<?= URL ?>#" class="nav__link nav__logout">
                 <i class='bx bx-log-out nav__icon'></i>
-                <span href="<?= URL ?>#" class="nav__name">Sair</span>
+                <span href="<?= URL ?>loginPage" class="nav__name">Sair</span>
             </a>
         </nav>
     </div>
@@ -127,9 +147,12 @@
             </div>
         `,
             data: function() {
-                return {}
+                return {
+                }
             },
-            methods: {}
+            methods: {
+            }
+            }
         })
     </script>
 </body>
