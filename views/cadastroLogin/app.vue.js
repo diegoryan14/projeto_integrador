@@ -32,7 +32,7 @@ const AppTemplate = `
                         maxlength="50"
                         style="text-transform: unset;"
                         cssClass="e-outline"
-                        v-model="input.email"
+                        v-model="input.email" 
                         placeholder="Email">
                     </ejs-textbox>
                 </div>
