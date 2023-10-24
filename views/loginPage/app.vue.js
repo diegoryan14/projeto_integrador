@@ -1,5 +1,5 @@
 const AppTemplate = `
-<div id="forms-cad" style='height: 100vh;'>
+<div id="forms-cad">
     <div id="form-right">
         <div id="formulario-cadastro" class="row">
             <div class="row">
