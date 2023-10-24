@@ -118,7 +118,7 @@
                                 <a href="<?= URL ?>#" class="nav__dropdown-item">Informações</a>
                             </div>
                             <div class="nav__dropdown-content">
-                                <a href="<?= URL ?>#" class="nav__dropdown-item">Cadastrar Caminhão</a>
+                                <a href="<?= URL ?>cadastrocaminhao" class="nav__dropdown-item">Cadastrar Caminhão</a>
                             </div>
                         </div>
                         <a href="#" class="nav__link">
