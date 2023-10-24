@@ -107,7 +107,7 @@ Vue.component('AppVue', {
             value: '',
             input: {
                 nome: null,
-                email: null,
+                email: null,//
                 cpf: null,
                 senha: null,
                 confirm_senha: null
