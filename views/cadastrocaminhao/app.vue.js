@@ -62,7 +62,7 @@ const AppTemplate = `
             </div>
             <!-- ******************SENHA*************** -->
             <div class="row">
-                <div class="col-md-8 margin-input" style="margin-top: 6px;">
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
                     <ejs-textbox
                         floatLabelType="Auto"
                         ref="email"
@@ -77,12 +77,23 @@ const AppTemplate = `
                 <div class="col-md-4 margin-input" style="margin-top: 6px;">
                     <ejs-textbox 
                         floatLabelType="Auto"
+                        ref="tipo-carreta"
+                        id="tipo-carreta"
+                        style="text-transform: unset;"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Modelo da Carreta">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox 
+                        floatLabelType="Auto"
                         ref="tipo-caminhao"
                         id="tipo-caminhao"
                         style="text-transform: unset;"
                         cssClass="e-outline"
                         maxlength="60"
-                        placeholder="Modelo da carreta">
+                        placeholder="Modelo do Caminhao">
                     </ejs-textbox>
                 </div>
             </div>
