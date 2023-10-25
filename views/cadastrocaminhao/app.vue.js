@@ -3,8 +3,8 @@ const AppTemplate = `
     <div id="form-right" class="titulo">
         <div id="formulario-cadastro" class="row forms">
             <div class="row text-center">
-                <div class="col-md-12 margin-input">
-                    <h1 class="h1-cad-caminhao">CADASTRAR CAMINHÃO</h1>
+                <div class="h1-cad-caminhao">
+                    <h2 class="test">Cadastrar Caminhão</h2>
                 </div>
             </div>
             <!-- ******************TIPO DE CAMINHÃO*************** -->
@@ -99,24 +99,34 @@ const AppTemplate = `
             </div>
             <!-- BOTÃO -->
             <div class="row text-center" style="margin-top: 2em;">
-                <div class="col-md-12 margin-input align-center">
-                    <ejs-progressbutton 
-                        id="zoomin"
-                        content="CADASTRAR"
-                        :enableProgress="true"
-                        v-on:click.native="Cadastrar_usuario"
-                        :spinSettings="spinCenter"
-                        :animationSettings="zoomIn"
-                        cssClass="e-round-corner">
-                    </ejs-progressbutton>
-                </div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Launch static backdrop modal
+                </button>
                 <div class="col-md-12 margin-input">
                     <ejs-button id="botao-voltar" cssClass='e-link' v-on:click.native='btnClick'>Voltar</ejs-button>
+                </div>
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Understood</button>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 `;
 
 Vue.component('AppVue', {
