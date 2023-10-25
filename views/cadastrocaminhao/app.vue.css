@@ -1,0 +1,33 @@
+@import url('https://fonts.cdnfonts.com/css/lexend-deca');
+
+.h1-cad-caminhao{
+    color: black;
+    font-family: 'Lexend Deca', sans-serif;
+    margin-top: 1em;
+}
+
+.control-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -5em;
+}
+
+.titulo {
+    position: relative;
+    width: 2000px;
+    height: 500px;
+    background-color: #F0F6FF;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    border-radius: 20px;
+}
+
+.forms{
+    width: 80em;
+}
+
+#zoomin{
+    padding: 10px 40px;
+}
