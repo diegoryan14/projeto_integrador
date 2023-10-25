@@ -47,6 +47,34 @@ const AppTemplate = `
                     <div class="h4-sel-carga">
                         <h4 class="test">Disponibilidade de Carga</h4>
                     </div>
+                    <div class="alinhar">
+                        <div class="row margin-input">
+                            <div class="col-md-2 margin-input">
+                                <ejs-textbox 
+                                    floatLabelType="Auto"
+                                    ref="senha"
+                                    id="text-disp"
+                                    type="text"
+                                    style="text-transform: unset;"
+                                    maxlength="30"
+                                    cssClass="e-outline"
+                                    placeholder="Senha">
+                                </ejs-textbox>
+                            </div>
+                            <div class="col-md-2 margin-input">
+                                <ejs-textbox 
+                                    floatLabelType="Auto"
+                                    ref="senha"
+                                    id="text-disp"
+                                    type="text"
+                                    style="text-transform: unset;"
+                                    maxlength="30"
+                                    cssClass="e-outline"
+                                    placeholder="Senha">
+                                </ejs-textbox>
+                            </div>
+                        </div>
+                    </div>
                     <div class="button">
                         <button type="button" class="btn btn-outline-primary btn-carga">Pesquisar</button>
                     </div>
