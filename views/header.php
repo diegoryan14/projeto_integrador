@@ -121,10 +121,16 @@
                                 <a href="<?= URL ?>cadastrocaminhao" class="nav__dropdown-item">Cadastrar Caminhão</a>
                             </div>
                         </div>
-                        <a href="#" class="nav__link">
-                            <i class='bx bx-signal-5 nav__icon'></i>
-                            <span class="nav__name">Empresas</span>
-                        </a>
+                        <div class="nav__dropdown">
+                            <a href="#" class="nav__link">
+                                <i class='bx bx-signal-5 nav__icon'></i>
+                                <span class="nav__name">Empresas</span>
+                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                            </a>
+                            <div class="nav__dropdown-content">
+                                <a href="<?= URL ?>#" class="nav__dropdown-item">Minhas Conversas</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
