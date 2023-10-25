@@ -23,10 +23,6 @@
     border-radius: 10px;
 }
 
-#botao-esq {
-    display: flex;
-    justify-content: flex-end;
-}
 .test2{
     margin-top: 1.5em;
 }
