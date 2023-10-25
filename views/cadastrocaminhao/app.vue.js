@@ -1,10 +1,10 @@
 const AppTemplate = `
-<div id="forms-cad" style='height: 100vh;'>
-    <div id="form-right">
-        <div id="formulario-cadastro" class="row">
+<div class="container control-section forms-cad ">
+    <div id="form-right" class="titulo">
+        <div id="formulario-cadastro" class="row forms">
             <div class="row text-center">
                 <div class="col-md-12 margin-input">
-                    <h1>CADASTRAR CAMINHÃO</h1>
+                    <h1 class="h1-cad-caminhao">CADASTRAR CAMINHÃO</h1>
                 </div>
             </div>
             <!-- ******************TIPO DE CAMINHÃO*************** -->
@@ -18,26 +18,36 @@ const AppTemplate = `
                         cssClass="e-outline"
                         maxlength="60"
                         v-model="input.nome"
-                        placeholder="Nome">
+                        placeholder="Nome do motorista">
                     </ejs-textbox>
                 </div>
             </div>
             <!-- ******************RETIRADA*************** -->
             <div class="row">
-                <div class="col-md-6 margin-input" style="margin-top: 6px;">
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
                     <ejs-textbox
                         floatLabelType="Auto"
-                        ref="email"
-                        id="email"
+                        ref="placa-caminhao"
+                        id="placa-caminhao"
                         maxlength="50"
                         style="text-transform: unset;"
                         cssClass="e-outline"
-                        v-model="input.email" 
-                        placeholder="Email">
+                        placeholder="Placa do caminhão">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox
+                        floatLabelType="Auto"
+                        ref="placa-carreta"
+                        id="placa-carreta"
+                        maxlength="50"
+                        style="text-transform: unset;"
+                        cssClass="e-outline"
+                        placeholder="Placa da carreta">
                     </ejs-textbox>
                 </div>
                 <!-- ******************CPF*************** -->
-                <div class="col-md-6 margin-input" style="margin-top: 6px;">
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
                     <ejs-maskedtextbox
                         ref="cpf"
                         id="cpf"
@@ -52,30 +62,38 @@ const AppTemplate = `
             </div>
             <!-- ******************SENHA*************** -->
             <div class="row">
-                <div class="col-md-6 margin-input" style="margin-top: 6px;">
-                    <ejs-textbox 
-                        floatLabelType="Auto"
-                        ref="senha"
-                        id="senha"
-                        maxlength="20"
-                        v-model="input.senha"
-                        type="password"
-                        style="text-transform: unset;"
-                        cssClass="e-outline"
-                        placeholder="Senha">
-                    </ejs-textbox>
-                </div>
-                <div class="col-md-6 margin-input" style="margin-top: 6px;">
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
                     <ejs-textbox
                         floatLabelType="Auto"
-                        ref="confirm_senha"
-                        id="confirm_senha"
-                        maxlength="20"
-                        v-model="input.confirm_senha"
-                        type="password"
+                        ref="email"
+                        id="email"
+                        maxlength="50"
                         style="text-transform: unset;"
                         cssClass="e-outline"
-                        placeholder="Confirmação de Senha">
+                        v-model="input.email" 
+                        placeholder="Email">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox 
+                        floatLabelType="Auto"
+                        ref="tipo-carreta"
+                        id="tipo-carreta"
+                        style="text-transform: unset;"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Modelo da Carreta">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox 
+                        floatLabelType="Auto"
+                        ref="tipo-caminhao"
+                        id="tipo-caminhao"
+                        style="text-transform: unset;"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Modelo do Caminhao">
                     </ejs-textbox>
                 </div>
             </div>
@@ -110,6 +128,8 @@ Vue.component('AppVue', {
             value: '',
             input: {
                 nome: null,
+                placaCaminhao: null,
+                placaCarreta: null,
                 email: null,
                 cpf: null,
                 senha: null,
@@ -137,22 +157,12 @@ Vue.component('AppVue', {
                 this.$refs.cpf.focusIn();
                 return;
             }
-            if(this.input.senha == null || this.input.senha.trim() == ''){
-                alert('Por Favor, Insira a senha');
-                this.$refs.senha.focusIn();
-                return;
-            }
-            if(this.input.confirm_senha == null || this.input.confirm_senha.trim() == ''){
-                alert('Por Favor, Insira a confirmação de senha');
-                this.$refs.confirm_senha.focusIn();
-                return;
-            }
+
             var obj = {
                 'NOME': this.input.nome,
                 'EMAIL': this.input.email,
                 'CPF': this.input.cpf,
-                'SENHA': this.input.senha,
-                'CONFIRM_SENHA': this.input.confirm_senha
+
             }
             axios.post(BASE + "/cadastroLogin/Cadastrar_usuario",obj).then((res) => {
                 if(res.data.code == '0'){
@@ -167,10 +177,8 @@ Vue.component('AppVue', {
         },
         limpar_campos(){
             this.input.nome = null;
-            this.input.email = null;
             this.input.cpf = null;
-            this.input.senha = null;
-            this.input.confirm_senha = null;
+            this.input.email = null;
         }
     },
     mounted(){
