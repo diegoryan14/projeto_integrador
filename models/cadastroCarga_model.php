@@ -21,12 +21,14 @@ class CadastroCarga_Model extends Model
         $estadoInical = $post->ESTADO_INICIAL;
         $cidadeInicial = $post->CIDADE_INICIAL;
         $estadoFinal = $post->ESTADO_FINAL;
-        $cidadeInicial = $post->CIDADE_FINAL;
+        $cidadeFinal = $post->CIDADE_FINAL;
         $dataEntrega = $post->DATA_ENTREGA;
         $dataRetirada = $post->DATA_RETIRADA;
         $descricao = $post->DESCRICAO;
         $produto = $post->PRODUTO;
 
+
+        // $empresa_destino = 
         
         if($empresa_destino == null){
             exit(json_encode(array("code" => "0", "msg" => "Por favor, selecione a Empresa Destino.")));
@@ -38,37 +40,58 @@ class CadastroCarga_Model extends Model
             exit(json_encode(array("code" => "0", "msg" => "O Peso não pode ser maior que 5.000 Kg.")));
         }
         else if($altura == null){
-            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o tipo do Produto.")));
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira a Altura da Carga.")));
         }
         else if($altura > 4){
-            exit(json_encode(array("code" => "0", "msg" => "")));
+            exit(json_encode(array("code" => "0", "msg" => "A Altura não pode ser maior que 4 metros.")));
         }
-        else if($produto == null){
+        else if($largura == null){
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira a Largura da Carga.")));
+        }
+        else if($largura > 3){
+            exit(json_encode(array("code" => "0", "msg" => "A Largura não pode ser maior que 3 metros.")));
+        }
+        else if($preco == null){
             exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o tipo do Produto.")));
         }
-        if($quantidade <= 0 && $quantidade >5000){
-            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira uma Quantidade para o item maior zero.")));
+        else if($estadoInical == null){
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, selecione o Estado de Partida.")));
+        }
+        else if($cidadeInicial == null){
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, selecione a Cidade de Partida.")));
+        }
+        else if($estadoFinal == null){
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, Selecione o Estado de Entrega.")));
+        }
+        else if($cidadeFinal == null){
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, selecione a Cidade de Entrega.")));
+        }
+        else if($dataEntrega == null){
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira a Data de Entrega da Carga.")));
+        }
+        else if($dataRetirada == null){
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira a Data de Rertira da Carga.")));
         }
         else if($produto == null){
-            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o tipo do Produto.")));
-        }
-        else if($email == null){
-            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o E-mail.")));
-        }
-        else if($retirada == null){
-            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira onde será feita a Retirada.")));
-        }
-        else if($destino == null){
-            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o Destino da Carga.")));
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o Produto que será transportado.")));
         }
         else {
-            $nome = strtoupper($nome);
-            //Desconto da empresa
-            $valorfreteDesconto = $valorfrete*0.1;
-            $valorTotalFrete = $valorfrete*0.9; 
-
-            $result = $this->db->insert('CARGA', array('EMPRESA' =>$empresa, 'PRODUTO' => $produto, 'RETIRADA' => $retirada, 'DESTINO' => $destino, 'QUANTIDADE' => $quantidade, 'VALORFRETE' => $valorTotalFrete));
-
+            $result = $this->db->insert('CADASTRAR_CARGA', array(
+                'EMPRESA_DESTINO' => $empresa_destino,
+                // 'EMPRESA_CADASTROU' => $empresa_cadastrou,
+                'PESO' => $peso, 
+                'ALTURA' => $altura, 
+                'LARGURA' => $largura,
+                'PRECO' => $preco,
+                'ESTADO_INICIAL' => $estadoInical,
+                'CIDADE_INICIAL' => $cidadeInicial,
+                'ESTADO_FINAL' => $estadoFinal,
+                'CIDADE_FINAL' => $cidadeFinal,
+                'DATA_ENTREGA' => $dataEntrega,
+                'DATA_RETIRADA' => $dataRetirada,
+                'DESCRICAO' => $descricao,
+                'PRODUTO' => $produto
+            ));
             if($result){
                 exit(json_encode(array("code" => "1", "msg" => "Cadastro do produto realizado com sucesso.")));
             } else{

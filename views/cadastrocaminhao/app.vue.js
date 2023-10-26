@@ -120,6 +120,14 @@ Vue.component('AppVue', {
         btnClick() {
             window.location.href = 'http://localhost/test/projeto_integrador/loginPage';
         },
+        get_cargas(){
+            // axios.post(BASE + "/cadastrocaminhao/cadastrarCaminhao",obj).then((res) => {
+            //     if(res.data.code == 0){
+            //         alert(res.data.msg);
+            //         return;
+            //     }
+            // })
+        },
         cadastrarCaminhao(){
             if(this.input.PLACA_CAMINHAO == null || this.input.PLACA_CAMINHAO.trim() == ''){
                 alert("Por Favor, Insira a Placa do Caminhão!");
