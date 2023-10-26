@@ -11,10 +11,10 @@ const AppTemplate = `
                     <div class="col-md-5 margin-input" style="margin-top: 6px;">
                         <ejs-textbox 
                             floatLabelType="Auto"
-                            ref="NOMEEMPRESAORIGEM"
+                            ref="NOMECARGA"
                             cssClass="e-outline"
                             maxlength="60"
-                            placeholder="Nome Empresa Origem">
+                            placeholder="Nome Carga">
                         </ejs-textbox>
                     </div>
                     <div class="col-md-5 margin-input" style="margin-top: 6px;">
@@ -88,7 +88,7 @@ const AppTemplate = `
                     <ejs-grid ref='overviewgrid' id='overviewgrid' :dataSource="gridDataSource" :allowSelection='true' :allowSorting='true'
                         height='350' rowHeight=38 :enableHover='false' :enableHeaderFocus='true' :load='load' :loadingIndicator='loadingIndicator'>
                         <e-columns>
-                            <e-column clipMode='EllipsisWithTooltip' field='EMPRESA' headerText='Empresa' :isPrimaryKey='true' width='20px'></e-column>
+                            <e-column clipMode='EllipsisWithTooltip' field='NOMECARGA' headerText='Nome Carga' :isPrimaryKey='true' width='20px'></e-column>
                             <e-column clipMode='EllipsisWithTooltip' field='DATABUSCAR' headerText='Data para buscar' :isPrimaryKey='true' width='20px'></e-column>
                             <e-column clipMode='EllipsisWithTooltip' field='ORIGEM' headerText='Origem' width='20px' clipMode='EllipsisWithTooltip'></e-column>
                             <e-column clipMode='EllipsisWithTooltip' field='DESTINO' headerText='Destino' width='20px'></e-column>
@@ -101,12 +101,159 @@ const AppTemplate = `
                         </e-columns>
                     </ejs-grid>
                 </div>
+                <ejs-button id='dlgbtn' v-on:click.native="dlgBtnClick">Open Dialog</ejs-button>
                 <div class="button">
                     <button type="button" class="btn btn-outline-primary btn-carga">Visualizar Carga</button>
                 </div>
             </div>
         </div>
     </div>
+    <ejs-dialog 
+        ref="modalDialog"  
+        :isModal='isModal'
+        :header='header' 
+        :buttons='buttons'
+        :width='width'
+        :close="modalDlgClose" >
+        <div class='wrap'>
+            <div class="row">
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox 
+                        floatLabelType="Auto"
+                        ref="NOMEEMPRESA"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Nome da Empresa">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox 
+                        floatLabelType="Auto"
+                        ref="CNPJ"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="CNPJ">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox 
+                        floatLabelType="Auto"
+                        ref="CEP"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="CEP">
+                    </ejs-textbox>
+                </div>
+            </div>  
+
+            <div class="row">
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox 
+                        floatLabelType="Auto"
+                        ref="ENDERECO"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Endereço">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-2 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox 
+                        floatLabelType="Auto"
+                        ref="NUMERO"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Número">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox 
+                        floatLabelType="Auto"
+                        ref="COMPLEMENTO"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Complemento">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-2 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox 
+                        floatLabelType="Auto"
+                        ref="CELULAR"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Celular">
+                    </ejs-textbox>
+                </div>
+            </div>  
+
+            <div class="row">
+                <div class="col-md-5 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox 
+                        floatLabelType="Auto"
+                        ref="NOMECARGA"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Nome Carga">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-5 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox
+                        floatLabelType="Auto"
+                        ref="NOMEEMPRESADESTINO"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Nome Empresa Destino">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-2 margin-input" style="margin-top: 6px;">
+                    <ejs-numerictextbox
+                        floatLabelType="Auto"
+                        ref="PESO"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Peso Kg">
+                    </ejs-numerictextbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 margin-input" style="margin-top: 6px;">
+                    <ejs-numerictextbox
+                        floatLabelType="Auto"
+                        ref="LARGURA"
+                        cssClass="e-outline"
+                        placeholder="Largura"
+                        maxlength="60">
+                    </ejs-numerictextbox>
+                </div>
+                <div class="col-md-2 margin-input" style="margin-top: 6px;">
+                    <ejs-numerictextbox
+                        floatLabelType="Auto"
+                        ref="ALTURA"
+                        cssClass="e-outline"
+                        placeholder="Altura"
+                        maxlength="60">
+                    </ejs-numerictextbox>
+                </div>
+                <div class="col-md-3 margin-input" style="margin-top: 6px;">
+                    <ejs-numerictextbox
+                        floatLabelType="Auto"
+                        ref="PRECO"
+                        cssClass="e-outline"
+                        placeholder="Valor da viagem"
+                        maxlength="60">
+                    </ejs-numerictextbox>
+                </div>
+                <div class="col-md-5 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox
+                        floatLabelType="Auto"
+                        ref="DESCRICAO"
+                        cssClass="e-outline"
+                        maxlength="60"
+                        placeholder="Descrição">
+                    </ejs-textbox>
+                </div>
+            </div>
+        </div>
+    </ejs-dialog>
 </div>
 
 `;
@@ -119,6 +266,10 @@ Vue.component('AppVue', {
             loadTime: null,
             loadingIndicator: { indicatorType: 'Shimmer' },
             fields: { text: 'text', value: 'value' },
+            header: 'Visualizar Carga',
+            width: '50%',
+            buttons: [{ click: this.dlgButtonClick, buttonModel: { content: 'log in', isPrimary: true } }],
+            isModal: true
         }
     },
     methods: {
@@ -137,7 +288,16 @@ Vue.component('AppVue', {
                     proxy.$refs.msgelement.classList.remove('e-hide');
                 }
             })
-        }
+        },
+        dlgBtnClick: function() {
+            this.$refs.modalDialog.show();
+        },
+        modalDlgClose: function() {
+            document.getElementById('dlgbtn').style.display = '';
+        },
+        dlgButtonClick: function() {
+            this.$refs.modalDialog.hide();
+        },
     },
     mounted(){
     }
