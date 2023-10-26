@@ -92,7 +92,7 @@ Vue.component('AppVue', {
         Cadastrar_usuario(){
             if(this.input.nome == null || this.input.nome.trim() == ''){
                 alert('Por Favor, Insira o Nome');
-                this.$refs.nome.focusIn();
+                this.$refs.nome.focusIn();//
                 return;
             }
             if(this.input.email == null || this.input.email.trim() == ''){
