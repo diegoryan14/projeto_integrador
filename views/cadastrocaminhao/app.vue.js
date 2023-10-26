@@ -93,7 +93,7 @@ Vue.component('AppVue', {
             if(this.input.nome == null || this.input.nome.trim() == ''){
                 alert('Por Favor, Insira o Nome');
                 this.$refs.nome.focusIn();
-                return;//
+                return;
             }
             if(this.input.email == null || this.input.email.trim() == ''){
                 alert('Por Favor, Insira o E-mail');
