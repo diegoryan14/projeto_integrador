@@ -9,15 +9,6 @@ const AppTemplate = `
                 </div>
                 <div class="row">
                     <div class="col-md-5 margin-input" style="margin-top: 6px;">
-                        <ejs-textbox 
-                            floatLabelType="Auto"
-                            ref="NOMEEMPRESAORIGEM"
-                            cssClass="e-outline"
-                            maxlength="60"
-                            placeholder="Nome Empresa Origem">
-                        </ejs-textbox>
-                    </div>
-                    <div class="col-md-5 margin-input" style="margin-top: 6px;">
                         <ejs-textbox
                             floatLabelType="Auto"
                             ref="NOMEEMPRESADESTINO"
@@ -61,7 +52,7 @@ const AppTemplate = `
                             ref="PRECO"
                             cssClass="e-outline"
                             placeholder="Valor da viagem"
-                            maxlength="60">
+                            maxlength="10">
                         </ejs-numerictextbox>
                     </div>
                     <div class="col-md-6 margin-input" style="margin-top: 6px;">
@@ -69,13 +60,13 @@ const AppTemplate = `
                             floatLabelType="Auto"
                             ref="DESCRICAO"
                             cssClass="e-outline"
-                            maxlength="60"
+                            maxlength="300"
                             placeholder="Descrição">
                         </ejs-textbox>
                     </div>
                 </div>
                 <div class="button">
-                    <button type="button" class="btn btn-outline-primary btn-carga">Postar Carga</button>
+                    <button type="button" @click="cadastrarCarga" class="btn btn-outline-primary btn-carga">Postar Carga</button>
                 </div>
             </div>
         </div>
@@ -119,6 +110,26 @@ Vue.component('AppVue', {
             loadTime: null,
             loadingIndicator: { indicatorType: 'Shimmer' },
             fields: { text: 'text', value: 'value' },
+            input: {
+                EMPRESA_DESTINO: null, /* dropdown */
+                PESO: null,
+                ALTURA: null,
+                LARGURA: null,
+                PRECO: null,
+                ESTADO_INICIAL: null, /* dropdown */
+                CIDADE_INICIAL: null, /* dropdown */
+                ESTADO_FINAL: null, /* dropdown */
+                CIDADE_FINAL: null, /* dropdown */
+                DATA_ENTREGA: null, /* DIA Q O CAMINHONEIRO TEM Q ENTREGAR A CARGA PARA A EMPRESA_DESTINO */
+                DATA_RETIRADA: null, /* DIA Q O  CAMINHONEIRO DEVE PEGAR A CARGA NA EMPRESA Q CADASTROU */
+                DESCRICAO: null,
+                PRODUTO: null
+            },
+            EmpresaDestino: [], /* DATASOURCE */
+            EstadoInicial: [], /* DATASOURCE */
+            CidadeInicial: [], /* DATASOURCE */
+            EstadoFinal: [], /* DATASOURCE */
+            CidadeFinal: [] /* DATASOURCE */
         }
     },
     methods: {
@@ -136,6 +147,31 @@ Vue.component('AppVue', {
                     proxy.isDataChanged = false;
                     proxy.$refs.msgelement.classList.remove('e-hide');
                 }
+            })
+        },
+        cadastrarCarga(){
+            if(this.input.EMPRESA_DESTINO == null){
+                alert('Por Favor, Insira a Empresa Destino.');
+                return;
+            }
+
+            var obj = {
+                'EMPRESA_DESTINO': this.input.EMPRESA_DESTINO,
+                'PESO': this.input.PESO,
+                'ALTURA': this.input.ALTURA,
+                'LARGURA': this.input.LARGURA,
+                'PRECO': this.input.PRECO,
+                'ESTADO_INICIAL': this.input.ESTADO_INICIAL,
+                'CIDADE_INICIAL': this.input.CIDADE_INICIAL,
+                'ESTADO_FINAL': this.input.ESTADO_FINAL,
+                'CIDADE_FINAL': this.input.CIDADE_FINAL,
+                'DATA_RETIRADA': this.input.DATA_RETIRADA,
+                'DATA_SAIDA': this.input.DATA_SAIDA,
+                'DESCRICAO': this.input.DESCRICAO,
+                'PRODUTO': this.input.PRODUTO
+            }
+            axios.post(BASE + "/index/cadastrarCarga",obj).then((res) => {
+
             })
         }
     },

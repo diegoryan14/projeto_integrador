@@ -7,71 +7,29 @@ const AppTemplate = `
                     <h2 class="test">Cadastrar Caminhão</h2>
                 </div>
             </div>
-            <!-- ******************TIPO DE CAMINHÃO*************** -->
             <div class="row">
-                <div class="col-md-12 margin-input" style="margin-top: 6px;">
+                <div class="col-md-4 margin-input" style="margin-top: 6px;">
                     <ejs-textbox 
                         floatLabelType="Auto"
-                        ref="nome"
-                        id="nome"
+                        ref="tipo-caminhao"
+                        id="tipo-caminhao"
                         style="text-transform: unset;"
                         cssClass="e-outline"
-                        maxlength="60"
-                        v-model="input.nome"
-                        placeholder="Nome do motorista">
+                        v-model="input.MODELO_CAMINHAO"
+                        maxlength="50"
+                        placeholder="Modelo do Caminhao">
                     </ejs-textbox>
                 </div>
-            </div>
-            <!-- ******************RETIRADA*************** -->
-            <div class="row">
                 <div class="col-md-4 margin-input" style="margin-top: 6px;">
                     <ejs-textbox
                         floatLabelType="Auto"
                         ref="placa-caminhao"
                         id="placa-caminhao"
-                        maxlength="50"
+                        maxlength="7"
+                        v-model="input.PLACA_CAMINHAO"
                         style="text-transform: unset;"
                         cssClass="e-outline"
                         placeholder="Placa do caminhão">
-                    </ejs-textbox>
-                </div>
-                <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                    <ejs-textbox
-                        floatLabelType="Auto"
-                        ref="placa-carreta"
-                        id="placa-carreta"
-                        maxlength="50"
-                        style="text-transform: unset;"
-                        cssClass="e-outline"
-                        placeholder="Placa da carreta">
-                    </ejs-textbox>
-                </div>
-                <!-- ******************CPF*************** -->
-                <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                    <ejs-maskedtextbox
-                        ref="cpf"
-                        id="cpf"
-                        mask="###.###.###-##"
-                        floatLabelType="Auto"
-                        cssClass="e-outline"
-                        maxlength="14"
-                        placeholder='CPF'
-                        v-model="input.cpf">
-                    </ejs-maskedtextbox>
-                </div>
-            </div>
-            <!-- ******************SENHA*************** -->
-            <div class="row">
-                <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                    <ejs-textbox
-                        floatLabelType="Auto"
-                        ref="email"
-                        id="email"
-                        maxlength="50"
-                        style="text-transform: unset;"
-                        cssClass="e-outline"
-                        v-model="input.email" 
-                        placeholder="Email">
                     </ejs-textbox>
                 </div>
                 <div class="col-md-4 margin-input" style="margin-top: 6px;">
@@ -81,26 +39,42 @@ const AppTemplate = `
                         id="tipo-carreta"
                         style="text-transform: unset;"
                         cssClass="e-outline"
-                        maxlength="60"
+                        v-model="input.MODELO_CARRETA"
+                        maxlength="50"
                         placeholder="Modelo da Carreta">
                     </ejs-textbox>
                 </div>
                 <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                    <ejs-textbox 
+                    <ejs-textbox
                         floatLabelType="Auto"
-                        ref="tipo-caminhao"
-                        id="tipo-caminhao"
+                        ref="placa-carreta"
+                        id="placa-carreta"
+                        maxlength="7"
+                        v-model="input.PLACA_CARRETA"
                         style="text-transform: unset;"
                         cssClass="e-outline"
-                        maxlength="60"
-                        placeholder="Modelo do Caminhao">
+                        placeholder="Placa da carreta">
+                    </ejs-textbox>
+                </div>
+                <div class="col-md-8 margin-input" style="margin-top: 6px;">
+                    <ejs-textbox
+                        floatLabelType="Auto"
+                        ref="DESCRICAO"
+                        id="DESCRICAO"
+                        maxlength="300"
+                        v-model="input.DESCRICAO"
+                        style="text-transform: unset;"
+                        cssClass="e-outline"
+                        placeholder="Descrição">
                     </ejs-textbox>
                 </div>
             </div>
+            <div class="row">
+            </div>
             <!-- BOTÃO -->
             <div class="row text-center" style="margin-top: 2em;">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Launch static backdrop modal
+                <button type="button" @clicik="cadastrarCaminhao" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Cadastrar Caminhão
                 </button>
                 <div class="col-md-12 margin-input">
                     <ejs-button id="botao-voltar" cssClass='e-link' v-on:click.native='btnClick'>Voltar</ejs-button>
@@ -133,17 +107,12 @@ Vue.component('AppVue', {
     template: AppTemplate,
     data: function() {
         return {
-            spinCenter : { position: 'Center' },
-            zoomIn : { effect: 'ZoomIn' },
-            value: '',
             input: {
-                nome: null,
-                placaCaminhao: null,
-                placaCarreta: null,
-                email: null,
-                cpf: null,
-                senha: null,
-                confirm_senha: null
+                PLACA_CAMINHAO: null,
+                MODELO_CAMINHAO: null,
+                PLACA_CARRETA: null,
+                MODELO_CARRETA: null,
+                DESCRICAO: null
             }
         }
     },
@@ -151,44 +120,25 @@ Vue.component('AppVue', {
         btnClick() {
             window.location.href = 'http://localhost/test/projeto_integrador/loginPage';
         },
-        Cadastrar_usuario(){
-            if(this.input.nome == null || this.input.nome.trim() == ''){
-                alert('Por Favor, Insira o Nome');
-                this.$refs.nome.focusIn();
+        cadastrarCaminhao(){
+            if(this.input.PLACA_CAMINHAO == null || this.input.PLACA_CAMINHAO.trim() == ''){
+                alert("Por Favor, Insira a Placa do Caminhão!");
                 return;
             }
-            if(this.input.email == null || this.input.email.trim() == ''){
-                alert('Por Favor, Insira o E-mail');
-                this.$refs.email.focusIn();
-                return;
-            }
-            if(this.input.cpf == null || this.input.cpf.trim() == ''){
-                alert('Por Favor, Insira o CPF');
-                this.$refs.cpf.focusIn();
-                return;
-            }
-
             var obj = {
-                'NOME': this.input.nome,
-                'EMAIL': this.input.email,
-                'CPF': this.input.cpf,
-
+                'PLACA_CAMINHAO': this.input.PLACA_CAMINHAO,
+                'MODELO_CAMINHAO': this.input.MODELO_CAMINHAO,
+                'PLACA_CARRETA': this.input.PLACA_CARRETA,
+                'MODELO_CARRETA': this.input.MODELO_CARRETA,
+                'DESCRICAO': this.input.DESCRICAO
             }
-            axios.post(BASE + "/cadastroLogin/Cadastrar_usuario",obj).then((res) => {
-                if(res.data.code == '0'){
+            axios.post(BASE + "/cadastrocaminhao/cadastrarCaminhao",obj).then((res) => {
+                if(res.data.code == 0){
                     alert(res.data.msg);
                     return;
                 }
                 alert(res.data.msg);
-                this.limpar_campos();
-                window.location.href = BASE + '/index/';
-                return;
             })
-        },
-        limpar_campos(){
-            this.input.nome = null;
-            this.input.cpf = null;
-            this.input.email = null;
         }
     },
     mounted(){

@@ -9,17 +9,43 @@ class CadastroCarga_Model extends Model
         parent::__construct();
     }
 
-    public function Cadastrar_carga()
+    public function cadastrarCarga()
     {
         $post = json_decode(file_get_contents('php://input'));
-        //var_dump($post);exit;
-        $empresa = $post->NOME_EMPRESA;
+        var_dump($post);exit;
+        $empresa_destino = $post->EMPRESA_DESTINO;
+        $peso = $post->PESO;
+        $altura = $post->ALTURA;
+        $largura = $post->LARGURA;
+        $preco = $post->PRECO;
+        $estadoInical = $post->ESTADO_INICIAL;
+        $cidadeInicial = $post->CIDADE_INICIAL;
+        $estadoFinal = $post->ESTADO_FINAL;
+        $cidadeInicial = $post->CIDADE_FINAL;
+        $dataEntrega = $post->DATA_ENTREGA;
+        $dataRetirada = $post->DATA_RETIRADA;
+        $descricao = $post->DESCRICAO;
         $produto = $post->PRODUTO;
-        $retirada = $post->RETIRADA;
-        $destino = $post->DESTINO;
-        $quantidade = $post->SENHA;
-        $valorfrete = $post->VALORFRETE;
 
+        
+        if($empresa_destino == null){
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, selecione a Empresa Destino.")));
+        }
+        else if($peso == null){
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o Peso da Carga.")));
+        }
+        else if($peso > 5000){
+            exit(json_encode(array("code" => "0", "msg" => "O Peso não pode ser maior que 5.000 Kg.")));
+        }
+        else if($altura == null){
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o tipo do Produto.")));
+        }
+        else if($altura > 4){
+            exit(json_encode(array("code" => "0", "msg" => "")));
+        }
+        else if($produto == null){
+            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o tipo do Produto.")));
+        }
         if($quantidade <= 0 && $quantidade >5000){
             exit(json_encode(array("code" => "0", "msg" => "Por favor, insira uma Quantidade para o item maior zero.")));
         }

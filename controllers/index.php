@@ -21,9 +21,9 @@ class Index extends Controller
         $this->view->render('footer');
     }
 
-    function example()
+    function cadastrarCarga()
     {
-        $this->model->example();
+        $this->model->cadastrarCarga();
     }
 
 }

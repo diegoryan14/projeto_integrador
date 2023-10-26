@@ -20,4 +20,10 @@ class Cadastrocaminhao extends Controller
         $this->view->render('header');
         $this->view->render('footer');
     }
+
+    
+    function cadastrarCaminhao()
+    {
+        $this->model->cadastrarCaminhao();
+    }
 }
