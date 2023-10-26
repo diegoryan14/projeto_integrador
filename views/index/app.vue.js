@@ -8,7 +8,7 @@ const AppTemplate = `
                     <h4 class="test">Postar Carga</h4>
                 </div>
                 <div class="row">
-                    <div class="col-md-5 margin-input" style="margin-top: 6px;">
+                    <div class="col-md-6 margin-input" style="margin-top: 6px;">
                         <ejs-textbox
                             floatLabelType="Auto"
                             ref="NOMEEMPRESADESTINO"
@@ -26,8 +26,6 @@ const AppTemplate = `
                             placeholder="Peso Kg">
                         </ejs-numerictextbox>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-2 margin-input" style="margin-top: 6px;">
                         <ejs-numerictextbox
                             floatLabelType="Auto"
@@ -46,6 +44,8 @@ const AppTemplate = `
                             maxlength="60">
                         </ejs-numerictextbox>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-2 margin-input" style="margin-top: 6px;">
                         <ejs-numerictextbox
                             floatLabelType="Auto"
@@ -55,11 +55,63 @@ const AppTemplate = `
                             maxlength="10">
                         </ejs-numerictextbox>
                     </div>
+                    <div class="col-md-2 margin-input" style="margin-top: 6px;">
+                        <ejs-dropdownlist
+                            :dataSource='input.ESTADO_INICIAL'
+                            floatLabelType="Auto"
+                            ref="estadoInicial"
+                            cssClass="e-outline"
+                            placeholder='Estado Origem'>
+                        </ejs-dropdownlist>
+                    </div>
+                    <div class="col-md-3 margin-input" style="margin-top: 6px;">
+                        <ejs-dropdownlist
+                            :dataSource='input.CIDADE_INICIAL'
+                            floatLabelType="Auto"
+                            ref="cidadeInicial"
+                            cssClass="e-outline"
+                            placeholder='Cidade Origem'>
+                        </ejs-dropdownlist>
+                    </div>
+                    <div class="col-md-2 margin-input" style="margin-top: 6px;">
+                        <ejs-dropdownlist
+                            :dataSource='input.ESTADO_FINAL'
+                            floatLabelType="Auto"
+                            ref="estadoFinal"
+                            cssClass="e-outline"
+                            placeholder='Estado Destino'>
+                        </ejs-dropdownlist>
+                    </div>
+                    <div class="col-md-3 margin-input" style="margin-top: 6px;">
+                        <ejs-dropdownlist
+                            :dataSource='input.CIDADE_FINAL'
+                            floatLabelType="Auto"
+                            ref="cidadeFinal"
+                            cssClass="e-outline"
+                            placeholder='Cidade Destino'>
+                        </ejs-dropdownlist>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 margin-input" style="margin-top: 6px;">
+                        <ejs-datepicker 
+                            floatLabelType="Auto"
+                            cssClass="e-outline"
+                            placeholder="Data para Entrega">
+                        </ejs-datepicker>
+                    </div>
+                    <div class="col-md-3 margin-input" style="margin-top: 6px;">
+                        <ejs-datepicker 
+                            floatLabelType="Auto"
+                            cssClass="e-outline"
+                            placeholder="Data para Retirada">
+                        </ejs-datepicker>
+                    </div>
                     <div class="col-md-6 margin-input" style="margin-top: 6px;">
                         <ejs-textbox
                             floatLabelType="Auto"
-                            ref="DESCRICAO"
                             cssClass="e-outline"
+                            ref="DESCRICAO"
                             maxlength="300"
                             placeholder="Descrição">
                         </ejs-textbox>
