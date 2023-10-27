@@ -2,62 +2,63 @@ const AppTemplate = `
 <div class="container control-section forms-cad ">
     <div id="form-right" class="titulo">
         <div id="formulario-cadastro" class="row forms">
-            <div class="row text-center">
-                <div class="h1-cad-caminhao">
+            <div class="card-body" style="margin-top: 1em">
+                <div class="h4-sel-carga">
                     <h2 class="test">Cadastrar Caminhão</h2>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                    <ejs-textbox 
-                        floatLabelType="Auto"
-                        ref="tipo-caminhao"
-                        id="tipo-caminhao"
-                        style="text-transform: unset;"
-                        cssClass="e-outline"
-                        v-model="input.MODELO_CAMINHAO"
-                        maxlength="50"
-                        placeholder="Modelo do Caminhao">
-                    </ejs-textbox>
+                <div class="row">
+                    <div class="col-md-2 margin-input" style="margin-top: 6px;">
+                        <ejs-textbox 
+                            floatLabelType="Auto"
+                            ref="tipo-caminhao"
+                            id="tipo-caminhao"
+                            style="text-transform: unset;"
+                            cssClass="e-outline"
+                            v-model="input.MODELO_CAMINHAO"
+                            maxlength="50"
+                            placeholder="Modelo do Caminhao">
+                        </ejs-textbox>
+                    </div>
+                    <div class="col-md-2 margin-input" style="margin-top: 6px;">
+                        <ejs-textbox
+                            floatLabelType="Auto"
+                            ref="placa-caminhao"
+                            id="placa-caminhao"
+                            maxlength="7"
+                            v-model="input.PLACA_CAMINHAO"
+                            style="text-transform: unset;"
+                            cssClass="e-outline"
+                            placeholder="Placa do caminhão">
+                        </ejs-textbox>
+                    </div>
+                    <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                        <ejs-textbox 
+                            floatLabelType="Auto"
+                            ref="tipo-carreta"
+                            id="tipo-carreta"
+                            style="text-transform: unset;"
+                            cssClass="e-outline"
+                            v-model="input.MODELO_CARRETA"
+                            maxlength="50"
+                            placeholder="Modelo da Carreta">
+                        </ejs-textbox>
+                    </div>
+                    <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                        <ejs-textbox
+                            floatLabelType="Auto"
+                            ref="placa-carreta"
+                            id="placa-carreta"
+                            maxlength="7"
+                            v-model="input.PLACA_CARRETA"
+                            style="text-transform: unset;"
+                            cssClass="e-outline"
+                            placeholder="Placa da carreta">
+                        </ejs-textbox>
+                    </div>
                 </div>
-                <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                    <ejs-textbox
-                        floatLabelType="Auto"
-                        ref="placa-caminhao"
-                        id="placa-caminhao"
-                        maxlength="7"
-                        v-model="input.PLACA_CAMINHAO"
-                        style="text-transform: unset;"
-                        cssClass="e-outline"
-                        placeholder="Placa do caminhão">
-                    </ejs-textbox>
-                </div>
-                <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                    <ejs-textbox 
-                        floatLabelType="Auto"
-                        ref="tipo-carreta"
-                        id="tipo-carreta"
-                        style="text-transform: unset;"
-                        cssClass="e-outline"
-                        v-model="input.MODELO_CARRETA"
-                        maxlength="50"
-                        placeholder="Modelo da Carreta">
-                    </ejs-textbox>
-                </div>
-                <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                    <ejs-textbox
-                        floatLabelType="Auto"
-                        ref="placa-carreta"
-                        id="placa-carreta"
-                        maxlength="7"
-                        v-model="input.PLACA_CARRETA"
-                        style="text-transform: unset;"
-                        cssClass="e-outline"
-                        placeholder="Placa da carreta">
-                    </ejs-textbox>
-                </div>
-                <div class="col-md-8 margin-input" style="margin-top: 6px;">
-                    <ejs-textbox
+                <div class="row">
+                    <div class="col-md-12 margin-input" style="margin-top: 6px;">
+                        <ejs-textbox
                         floatLabelType="Auto"
                         ref="DESCRICAO"
                         id="DESCRICAO"
@@ -66,20 +67,19 @@ const AppTemplate = `
                         style="text-transform: unset;"
                         cssClass="e-outline"
                         placeholder="Descrição">
-                    </ejs-textbox>
+                        </ejs-textbox>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-            </div>
-            <!-- BOTÃO -->
+                <!-- BOTÃO -->  
             
-            <div class="button" style="margin-top: 20px;">
-                <button type="button" class="btn btn-outline-primary btn-carga" @click="cadastrarCaminhao">Cadastrar Caminhão</button>
+                <div class="button" style="margin-top: 20px;">
+                    <button type="button" class="btn btn-outline-primary btn-carga" @click="cadastrarCaminhao">Cadastrar Caminhão</button>
+                </div>
             </div>
             <div class="row text-center" style="margin-top: 2em;">
-                <div class="col-md-12 margin-input">
+                <!--<div class="col-md-12 margin-input">
                     <ejs-button id="botao-voltar" cssClass='e-link' v-on:click.native='btnClick'>Voltar</ejs-button>
-                </div>
+                </div>-->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
