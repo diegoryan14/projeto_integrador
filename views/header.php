@@ -135,9 +135,9 @@
                 </div>
             </div>
 
-            <a href="<?= URL ?>#" class="nav__link nav__logout">
+            <a href="<?= URL ?>login" class="nav__link nav__logout">
                 <i class='bx bx-log-out nav__icon'></i>
-                <span href="<?= URL ?>logout" class="nav__name">Sair</span>
+                <span href="<?= URL ?>login" class="nav__name">Sair</span>
             </a>
         </nav>
     </div>
