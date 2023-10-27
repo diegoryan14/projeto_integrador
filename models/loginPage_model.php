@@ -19,7 +19,8 @@ class loginPage_Model extends Model
         $result = $this->db->select("SELECT
                                         NOME,
                                         CPF,
-                                        SENHA
+                                        SENHA,
+                                        TIPO_USUARIO
                                     FROM
                                         USUARIO
                                     WHERE
@@ -33,6 +34,7 @@ class loginPage_Model extends Model
             Session::set('logado', true);
             Session::set('SENHA', $result[0]->SENHA);
             Session::set('NOME', $result[0]->NOME);
+            Session::set('TIPO_USUARIO', $result[0]->TIPO_USUARIO);
             $msg = array("code" => 1,"msg" => "success");
         }
         else{

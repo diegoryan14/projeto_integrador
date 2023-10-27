@@ -87,6 +87,7 @@ class CadastroCarga_Model extends Model
                 'CIDADE_INICIAL' => $cidadeInicial,
                 'ESTADO_FINAL' => $estadoFinal,
                 'CIDADE_FINAL' => $cidadeFinal,
+                // 'DATA_REGISTRO' => 
                 'DATA_ENTREGA' => $dataEntrega,
                 'DATA_RETIRADA' => $dataRetirada,
                 'DESCRICAO' => $descricao,
