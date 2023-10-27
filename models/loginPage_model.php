@@ -17,6 +17,7 @@ class loginPage_Model extends Model
         $senha = $post->SENHA;
 		$dados=array(':CPF' => $cpf,':SENHA' => $senha);
         $result = $this->db->select("SELECT
+                                        SEQ_USUARIO,
                                         NOME,
                                         CPF,
                                         SENHA,
@@ -35,6 +36,7 @@ class loginPage_Model extends Model
             Session::set('SENHA', $result[0]->SENHA);
             Session::set('NOME', $result[0]->NOME);
             Session::set('TIPO_USUARIO', $result[0]->TIPO_USUARIO);
+            Session::set('SEQ_USUARIO', $result[0]->SEQ_USUARIO);
             $msg = array("code" => 1,"msg" => "success");
         }
         else{

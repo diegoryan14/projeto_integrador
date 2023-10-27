@@ -236,7 +236,11 @@ Vue.component('AppVue', {
                 'PRODUTO': this.input.PRODUTO
             }
             axios.post(BASE + "/cadastroCarga/cadastrarCarga",obj).then((res) => {
-
+                if(res.data.code == 0){
+                    alert(res.data.msg);
+                    return;
+                }
+                alert(res.data.msg);
             })
         }
     },

@@ -12,7 +12,7 @@ class CadastroCarga_Model extends Model
     public function cadastrarCarga()
     {
         $post = json_decode(file_get_contents('php://input'));
-        var_dump($post);exit;
+        // var_dump($post);exit;
         $empresa_destino = $post->EMPRESA_DESTINO;
         $peso = $post->PESO;
         $altura = $post->ALTURA;
@@ -26,9 +26,10 @@ class CadastroCarga_Model extends Model
         $dataRetirada = $post->DATA_RETIRADA;
         $descricao = $post->DESCRICAO;
         $produto = $post->PRODUTO;
-
-
-        // $empresa_destino = 
+        
+        Session::init();   
+        $o = Session::get('SEQ_USUARIO');
+        $empresa_destino = $o;
         
         if($empresa_destino == null){
             exit(json_encode(array("code" => "0", "msg" => "Por favor, selecione a Empresa Destino.")));
@@ -78,7 +79,7 @@ class CadastroCarga_Model extends Model
         else {
             $result = $this->db->insert('CADASTRAR_CARGA', array(
                 'EMPRESA_DESTINO' => $empresa_destino,
-                // 'EMPRESA_CADASTROU' => $empresa_cadastrou,
+                'EMPRESA_CADASTROU' => $empresa_cadastrou,
                 'PESO' => $peso, 
                 'ALTURA' => $altura, 
                 'LARGURA' => $largura,

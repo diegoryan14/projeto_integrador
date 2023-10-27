@@ -22,6 +22,10 @@ class Cadastrocaminhao_Model extends Model
         }
 
         // INICIAR SESSAO PARA CADASTRAR A SEQ DO USUARIO
+        
+        Session::init();   
+        $o = Session::get('SEQ_USUARIO');
+        $seq_usuario = $o;
 
         if($modelo_caminhao == null){
             exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o Modelo do Caminhão.")));
@@ -37,7 +41,7 @@ class Cadastrocaminhao_Model extends Model
         }
         else {
 
-            $result = $this->db->insert('CADASTRAR_CAMINHAO', array(/*'DONO_CAMINHAO'=> $seq_usuario,*/ 'MODELO_CAMINHAO' =>$modelo_caminhao, 'PLACA_CAMINHAO' => $placa_caminhao, 'MODELO_CARRETA' => $modelo_carreta, 'PLACA_CARRETA' => $placa_carreta));
+            $result = $this->db->insert('CADASTRAR_CAMINHAO', array('DONO_CAMINHAO'=> $seq_usuario, 'MODELO_CAMINHAO' =>$modelo_caminhao, 'PLACA_CAMINHAO' => $placa_caminhao, 'MODELO_CARRETA' => $modelo_carreta, 'PLACA_CARRETA' => $placa_carreta));
 
             if($result){
                 exit(json_encode(array("code" => "1", "msg" => "Cadastro realizado com sucesso!!")));
