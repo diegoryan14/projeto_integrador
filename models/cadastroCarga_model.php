@@ -9,11 +9,66 @@ class CadastroCarga_Model extends Model
         parent::__construct();
     }
 
+    public function get_cargas()
+    {
+        $sql = "SELECT
+                    *
+                FROM
+                    CADASTRAR_CARGA C
+                WHERE
+                    C.CARGA_ACEITA = 'N'";
+        $result = $this->db->select($sql);
+        echo (json_encode($result));
+    }
+
+    public function get_empresa()
+    {
+        $sql = "SELECT
+                    SEQ_EMPRESA SEQ,
+                    NOME
+                FROM
+                    EMPRESA E 
+                WHERE
+                    E.ATIVO = 'S'";
+        $result = $this->db->select($sql);
+        echo (json_encode($result));
+    }
+
+    public function get_estado()
+    {
+        $sql = "SELECT
+                    E.SEQ_ESTADO SEQ,
+                    CONCAT(E.NOME, ' (', E.SIGLA ,')') NOME
+                FROM
+                    ESTADO E
+                ORDER BY
+                    NOME";
+        $result = $this->db->select($sql);
+        echo (json_encode($result));
+    }
+
+    public function get_cidade()
+    {
+        $sql = "SELECT
+                    C.SEQ_CIDADE SEQ,
+                    CONCAT(C.NOME, ' (', E.SIGLA ,')') NOME
+                FROM
+                    CIDADE C,
+                    ESTADO E
+                WHERE
+                    C.COD_ESTADO = E.SEQ_ESTADO
+                ORDER BY
+                    NOME";
+        $result = $this->db->select($sql);
+        echo (json_encode($result));
+    }
+
     public function cadastrarCarga()
     {
         $post = json_decode(file_get_contents('php://input'));
         // var_dump($post);exit;
         $empresa_destino = $post->EMPRESA_DESTINO;
+        // $empresa_destino = 1;
         $peso = $post->PESO;
         $altura = $post->ALTURA;
         $largura = $post->LARGURA;
@@ -22,14 +77,14 @@ class CadastroCarga_Model extends Model
         $cidadeInicial = $post->CIDADE_INICIAL;
         $estadoFinal = $post->ESTADO_FINAL;
         $cidadeFinal = $post->CIDADE_FINAL;
-        $dataEntrega = $post->DATA_ENTREGA;
-        $dataRetirada = $post->DATA_RETIRADA;
+        // $dataEntrega = $post->DATA_ENTREGA;
+        // $dataRetirada = $post->DATA_RETIRADA;
         $descricao = $post->DESCRICAO;
-        $produto = $post->PRODUTO;
+        // $produto = $post->PRODUTO;
         
         Session::init();   
         $o = Session::get('SEQ_USUARIO');
-        $empresa_destino = $o;
+        $empresa_cadastrou = $o;
         
         if($empresa_destino == null){
             exit(json_encode(array("code" => "0", "msg" => "Por favor, selecione a Empresa Destino.")));
@@ -67,15 +122,15 @@ class CadastroCarga_Model extends Model
         else if($cidadeFinal == null){
             exit(json_encode(array("code" => "0", "msg" => "Por favor, selecione a Cidade de Entrega.")));
         }
-        else if($dataEntrega == null){
-            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira a Data de Entrega da Carga.")));
-        }
-        else if($dataRetirada == null){
-            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira a Data de Rertira da Carga.")));
-        }
-        else if($produto == null){
-            exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o Produto que será transportado.")));
-        }
+        // else if($dataEntrega == null){
+        //     exit(json_encode(array("code" => "0", "msg" => "Por favor, insira a Data de Entrega da Carga.")));
+        // }
+        // else if($dataRetirada == null){
+        //     exit(json_encode(array("code" => "0", "msg" => "Por favor, insira a Data de Rertira da Carga.")));
+        // }
+        // else if($produto == null){
+        //     exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o Produto que será transportado.")));
+        // }
         else {
             $result = $this->db->insert('CADASTRAR_CARGA', array(
                 'EMPRESA_DESTINO' => $empresa_destino,
@@ -89,13 +144,13 @@ class CadastroCarga_Model extends Model
                 'ESTADO_FINAL' => $estadoFinal,
                 'CIDADE_FINAL' => $cidadeFinal,
                 // 'DATA_REGISTRO' => 
-                'DATA_ENTREGA' => $dataEntrega,
-                'DATA_RETIRADA' => $dataRetirada,
-                'DESCRICAO' => $descricao,
-                'PRODUTO' => $produto
+                // 'DATA_ENTREGA' => $dataEntrega,
+                // 'DATA_RETIRADA' => $dataRetirada,
+                'DESCRICAO' => $descricao
+                // 'PRODUTO' => $produto
             ));
             if($result){
-                exit(json_encode(array("code" => "1", "msg" => "Cadastro do produto realizado com sucesso.")));
+                exit(json_encode(array("code" => "1", "msg" => "Cadastro realizado com sucesso.")));
             } else{
                 exit(json_encode(array("code" => "0", "msg" => "Erro ao inserir.")));
             }

@@ -12,7 +12,7 @@ class CadastroCarga extends Controller
 
     function index()
     {
-        // Auth::autentica();
+        Auth::autentica();
         $this->view->title = "Cadastro Caminhão";
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
         array_push($this->view->js, "views/cadastroCarga/app.vue.js");
@@ -21,7 +21,26 @@ class CadastroCarga extends Controller
         $this->view->render('footer');
     }
 
+    function get_cargas()
+    {
+        $this->model->get_cargas();
+    }
+
+    function get_empresa()
+    {
+        $this->model->get_empresa();
+    }
     
+    function get_estado()
+    {
+        $this->model->get_estado();
+    }
+
+    function get_cidade()
+    {
+        $this->model->get_cidade();
+    }
+
     function cadastrarCarga()
     {
         $this->model->cadastrarCarga();

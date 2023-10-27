@@ -2,7 +2,7 @@
 
 require_once("util/param.php");
 
-class loginPage_Model extends Model
+class login_Model extends Model
 {
     public function __construct()
     {
@@ -26,8 +26,8 @@ class loginPage_Model extends Model
                                         USUARIO
                                     WHERE
                                         CPF = :CPF
-                                        AND SENHA = sha2(:SENHA,
-                                        256)", $dados);
+                                        AND SENHA = sha2(:SENHA,256)
+                                        AND ATIVO = 'S'", $dados);
         if (count($result) > 0) {
             // login
             Session::init();

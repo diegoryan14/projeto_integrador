@@ -72,10 +72,11 @@ const AppTemplate = `
             <div class="row">
             </div>
             <!-- BOTÃO -->
+            
+            <div class="button" style="margin-top: 20px;">
+                <button type="button" class="btn btn-outline-primary btn-carga" @click="cadastrarCaminhao">Cadastrar Caminhão</button>
+            </div>
             <div class="row text-center" style="margin-top: 2em;">
-                <button type="button" @clicik="cadastrarCaminhao" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Cadastrar Caminhão
-                </button>
                 <div class="col-md-12 margin-input">
                     <ejs-button id="botao-voltar" cssClass='e-link' v-on:click.native='btnClick'>Voltar</ejs-button>
                 </div>
@@ -122,21 +123,21 @@ Vue.component('AppVue', {
         },
         cadastrarCaminhao(){
             
-            var placa = "ABC1234";
-            const regexPlaca = /^[a-zA-Z]{3}[0-9]{4}$/;
+            // var placa = "ABC1234";
+            // const regexPlaca = /^[a-zA-Z]{3}[0-9]{4}$/;
             
-            if(this.input.PLACA_CAMINHAO == null || this.input.PLACA_CAMINHAO.trim() == ''){
-                alert("Por Favor, Insira a Placa do Caminhão!");
-                return;
-            }
             if(this.input.MODELO_CAMINHAO == null || this.input.MODELO_CAMINHAO.trim() == ''){
                 alert("Por Favor, Insira a Modelo do Caminhão!");
                 return;
             }
-            // if(this.input.MODELO_CAMINHAO == null || this.input.MODELO_CAMINHAO.trim() == ''){
-            //     alert("Por Favor, Insira a Modelo do Caminhão!");
-            //     return;
-            // }
+            if(this.input.PLACA_CAMINHAO == null || this.input.PLACA_CAMINHAO.trim() == ''){
+                alert("Por Favor, Insira a Placa do Caminhão!");
+                return;
+            }
+            if((this.input.PLACA_CAMINHAO.trim()).length < 7){
+                alert("Por Favor, Digite corretamenta a placa do caminhao!");
+                return;
+            }
             var obj = {
                 'PLACA_CAMINHAO': this.input.PLACA_CAMINHAO,
                 'MODELO_CAMINHAO': this.input.MODELO_CAMINHAO,
@@ -145,12 +146,20 @@ Vue.component('AppVue', {
                 'DESCRICAO': this.input.DESCRICAO
             }
             axios.post(BASE + "/cadastrocaminhao/cadastrarCaminhao",obj).then((res) => {
-                if(res.data.code == 0){
+                if(res.data.code == "0"){
                     alert(res.data.msg);
                     return;
                 }
                 alert(res.data.msg);
+                this.limpar_campos();
             })
+        },
+        limpar_campos(){
+            this.input.PLACA_CAMINHAO = null;
+            this.input.MODELO_CAMINHAO = null;
+            this.input.PLACA_CARRETA = null;
+            this.input.MODELO_CARRETA = null;
+            this.input.DESCRICAO = null;
         }
     },
     mounted(){

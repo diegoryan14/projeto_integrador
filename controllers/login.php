@@ -1,6 +1,6 @@
 <?php
 
-class loginPage extends Controller
+class login extends Controller
 {
 
     function __construct()
@@ -15,8 +15,8 @@ class loginPage extends Controller
         // Auth::autentica();
         $this->view->title = "Login";
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
-        array_push($this->view->js, "views/loginPage/app.vue.js");
-        array_push($this->view->css, "views/loginPage/app.vue.css");
+        array_push($this->view->js, "views/login/app.vue.js");
+        array_push($this->view->css, "views/login/app.vue.css");
         $this->view->render('header');
         $this->view->render('footer');
     }

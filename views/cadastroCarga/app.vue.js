@@ -13,6 +13,7 @@ const AppTemplate = `
                             floatLabelType="Auto"
                             :dataSource='EmpresaDestino'
                             v-model="input.EMPRESA_DESTINO"
+							:fields="{ text: 'NOME', value: 'SEQ'}"
                             ref="NOMEEMPRESADESTINO"
                             cssClass="e-outline"
                             maxlength="60"
@@ -64,7 +65,8 @@ const AppTemplate = `
                     <div class="col-md-2 margin-input" style="margin-top: 6px;">
                         <ejs-dropdownlist
                             :dataSource='EstadoInicial'
-                            v-model="input.ESTADO_ORIGEM"
+                            v-model="input.ESTADO_INICIAL"
+							:fields="{ text: 'NOME', value: 'SEQ'}"
                             floatLabelType="Auto"
                             ref="estadoInicial"
                             cssClass="e-outline"
@@ -74,7 +76,8 @@ const AppTemplate = `
                     <div class="col-md-3 margin-input" style="margin-top: 6px;">
                         <ejs-dropdownlist
                             :dataSource='CidadeFinal'
-                            v-model="input.CIDADE_ORIGEM"
+                            v-model="input.CIDADE_INICIAL"
+							:fields="{ text: 'NOME', value: 'SEQ'}"
                             floatLabelType="Auto"
                             ref="cidadeInicial"
                             cssClass="e-outline"
@@ -84,7 +87,8 @@ const AppTemplate = `
                     <div class="col-md-2 margin-input" style="margin-top: 6px;">
                         <ejs-dropdownlist
                             :dataSource='EstadoInicial'
-                            v-model="input.ESTADO_DESTINO"
+                            v-model="input.ESTADO_FINAL"
+							:fields="{ text: 'NOME', value: 'SEQ'}"
                             floatLabelType="Auto"
                             ref="estadoFinal"
                             cssClass="e-outline"
@@ -94,7 +98,8 @@ const AppTemplate = `
                     <div class="col-md-3 margin-input" style="margin-top: 6px;">
                         <ejs-dropdownlist
                             :dataSource='CidadeFinal'
-                            v-model="input.CIDADE_DESTINO"
+                            v-model="input.CIDADE_FINAL"
+							:fields="{ text: 'NOME', value: 'SEQ'}"
                             floatLabelType="Auto"
                             ref="cidadeFinal"
                             cssClass="e-outline"
@@ -214,9 +219,67 @@ Vue.component('AppVue', {
                 }
             })
         },
+        get_cargas(){
+            axios.post(BASE + "/cadastroCarga/get_cargas").then((res) => {
+                this.gridDataSource = res.data;
+            })
+        },
+        get_empresa(){
+            axios.post(BASE + "/cadastroCarga/get_empresa").then((res) => {
+                this.EmpresaDestino = res.data;
+            })
+        },
+        get_estado(){
+            axios.post(BASE + "/cadastroCarga/get_estado").then((res) => {
+                this.EstadoInicial = res.data;
+                this.EstadoFinal = res.data;
+            })
+        },
+        get_cidade(){
+            axios.post(BASE + "/cadastroCarga/get_cidade").then((res) => {
+                this.CidadeInicial = res.data;
+                this.CidadeFinal = res.data;
+            })
+        },
         cadastrarCarga(){
-            // if(this.input.EMPRESA_DESTINO == null){
-            //     alert('Por Favor, Insira a Empresa Destino.');
+            if(this.input.EMPRESA_DESTINO == 0){
+                alert('Por Favor, Insira a Empresa Destino.');
+                return;
+            }
+            if(this.input.PESO == null){
+                alert('Por Favor, Insira o Peso.');
+                return;
+            }
+            if(this.input.ALTURA == null){
+                alert('Por Favor, Insira a Altura.');
+                return;
+            }
+            if(this.input.LARGURA == null){
+                alert('Por Favor, Insira a Largura da Carga.');
+                return;
+            }
+            if(this.input.PRECO == null){
+                alert('Por Favor, Insira a Preço da Carga.');
+                return;
+            }
+            if(this.input.ESTADO_INICIAL == 0){
+                alert('Por Favor, Insira o Estado de Partida da Carga.');
+                return;
+            }
+            if(this.input.CIDADE_INICIAL == 0){
+                alert('Por Favor, Insira a Cidade de Partida da Carga.');
+                return;
+            }
+            if(this.input.ESTADO_FINAL == 0){
+                alert('Por Favor, Insira o Estado de Destino da Carga.');
+                return;
+            }
+            if(this.input.CIDADE_FINAL == 0){
+                alert('Por Favor, Insira a Cidade de Destino da Carga.');
+                return;
+            }
+            // if(this.input.PRODUTO == null){
+            //     alert('Por Favor, Insira o Produto.');
             //     return;
             // }
 
@@ -230,20 +293,40 @@ Vue.component('AppVue', {
                 'CIDADE_INICIAL': this.input.CIDADE_INICIAL,
                 'ESTADO_FINAL': this.input.ESTADO_FINAL,
                 'CIDADE_FINAL': this.input.CIDADE_FINAL,
-                'DATA_RETIRADA': this.input.DATA_RETIRADA,
-                'DATA_SAIDA': this.input.DATA_SAIDA,
+                // 'DATA_RETIRADA': this.input.DATA_RETIRADA,
+                // 'DATA_ENTREGA': this.input.DATA_ENTREGA,
                 'DESCRICAO': this.input.DESCRICAO,
-                'PRODUTO': this.input.PRODUTO
+                // 'PRODUTO': this.input.PRODUTO
             }
             axios.post(BASE + "/cadastroCarga/cadastrarCarga",obj).then((res) => {
-                if(res.data.code == 0){
+                if(res.data.code == "0"){
                     alert(res.data.msg);
                     return;
                 }
                 alert(res.data.msg);
+                this.limparCamposCarga();
             })
-        }
+        },
+        limparCamposCarga(){
+            this.input.EMPRESA_DESTINO = null;
+            this.input.PESO = null;
+            this.input.ALTURA = null;
+            this.input.LARGURA = null;
+            this.input.PRECO = null;
+            this.input.ESTADO_INICIAL = null;
+            this.input.CIDADE_INICIAL = null;
+            this.input.ESTADO_FINAL = null;
+            this.input.CIDADE_FINAL = null;
+            this.input.DATA_RETIRADA = null;
+            this.input.DATA_SAIDA = null;
+            this.input.DESCRICAO = null;
+            this.input.PRODUTO = null;
+        }        
     },
     mounted(){
+        this.get_cargas();
+        this.get_empresa();
+        this.get_cidade();
+        this.get_estado();
     }
 })

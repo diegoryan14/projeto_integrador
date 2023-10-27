@@ -95,12 +95,12 @@ Vue.component('AppVue', {
                 'CPF': this.input.cpf,
                 'SENHA': this.input.senha
             }
-            axios.post(BASE + "/loginPage/Login",obj).then((res) => {
+            axios.post(BASE + "/login/Login",obj).then((res) => {
                 if(res.data.code == '0'){
                     alert(res.data.msg);
                     return;
                 }
-                window.location.href = BASE + '/index/';
+                window.location.href = BASE + '/cadastroCarga/';
                 this.limpar_campos();
                 return;
             })
