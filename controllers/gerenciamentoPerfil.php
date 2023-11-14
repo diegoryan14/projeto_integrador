@@ -9,7 +9,7 @@ class GerenciamentoPerfil extends Controller
         $this->view->js = array();
         $this->view->css = array();
     }
-
+//f
     function index()
     {
         Auth::autentica();
