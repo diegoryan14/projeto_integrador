@@ -113,7 +113,8 @@ Vue.component('AppVue', {
                 email: null,
                 cpf: null,
                 senha: null,
-                confirm_senha: null
+                confirm_senha: null,
+                tipo_usuario: 1, /* 1- Caminhoneiro // 2- Empresa */
             }
         }
     },
@@ -152,7 +153,8 @@ Vue.component('AppVue', {
                 'EMAIL': this.input.email,
                 'CPF': this.input.cpf,
                 'SENHA': this.input.senha,
-                'CONFIRM_SENHA': this.input.confirm_senha
+                'CONFIRM_SENHA': this.input.confirm_senha,
+                'TIPO_USUARIO': this.input.tipo_usuario
             }
             axios.post(BASE + "/cadastroLogin/Cadastrar_usuario",obj).then((res) => {
                 if(res.data.code == '0'){

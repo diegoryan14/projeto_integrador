@@ -18,6 +18,7 @@ class CadastroLogin_Model extends Model
         $email = $post->EMAIL;
         $senha = $post->SENHA;
         $confirm_senha = $post->CONFIRM_SENHA;
+        $tipoUsuario = $post->TIPO_USUARIO;
 
         /* VALIDAR E-MAIL */
         if(filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -53,7 +54,7 @@ class CadastroLogin_Model extends Model
             $nome = strtoupper($nome);
             $email = strtolower($email);
 
-            $result = $this->db->insert('USUARIO', array('NOME' =>$nome, 'CPF' => $CPF, 'EMAIL' => $email, 'SENHA' => $senha_hash));
+            $result = $this->db->insert('USUARIO', array('NOME' =>$nome, 'CPF' => $CPF, 'EMAIL' => $email, 'SENHA' => $senha_hash, 'TIPO_USUARIO' => $tipoUsuario));
 
             if($result){
                 exit(json_encode(array("code" => "1", "msg" => "Cadastro realizado com sucesso.")));
