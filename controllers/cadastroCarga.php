@@ -12,8 +12,8 @@ class CadastroCarga extends Controller
 
     function index()
     {
-        Auth::autentica();
-        $this->view->title = "Cadastro Caminhão";
+        // Auth::autentica();
+        $this->view->title = "Cadastro Carga";
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
         array_push($this->view->js, "views/cadastroCarga/app.vue.js");
         array_push($this->view->css, "views/cadastroCarga/app.vue.css");

@@ -1,6 +1,6 @@
 <?php
 
-class GerenciamentoPerfil extends Controller
+class ListaSolicitacao extends Controller
 {
 
     function __construct()
@@ -9,14 +9,14 @@ class GerenciamentoPerfil extends Controller
         $this->view->js = array();
         $this->view->css = array();
     }
-//f
+
     function index()
     {
-        Auth::autentica();
-        $this->view->title = "Cadastro Caminhão";
+        // Auth::autentica();
+        $this->view->title = "Lista de Solicitações";
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
-        array_push($this->view->js, "views/gerenciamentoPerfil/app.vue.js");
-        array_push($this->view->css, "views/gerenciamentoPerfil/app.vue.css");
+        array_push($this->view->js, "views/listaSolicitacao/app.vue.js");
+        array_push($this->view->css, "views/listaSolicitacao/app.vue.css");
         $this->view->render('header');
         $this->view->render('footer');
     }

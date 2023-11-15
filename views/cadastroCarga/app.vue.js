@@ -5,7 +5,7 @@ const AppTemplate = `
         <div class="col-md-12">
             <div class="card-body" style="margin-top: 1em">
                 <div class="h4-sel-carga">
-                    <h4 class="test">Postar Carga</h4>
+                    <h4 class="test">POSTAR CARGA</h4>
                 </div>
                 <div class="row">
                     <div class="col-md-6 margin-input" style="margin-top: 6px;">
@@ -143,7 +143,7 @@ const AppTemplate = `
         <div class="col-md-12">
             <div class="card-body">
                 <div class="h4-sel-carga">
-                    <h4 class="test">Cargas Disponíveis para entrega</h4>
+                    <h4 class="test">CARGAS DISPONÍVEIS PARA ENTREGA</h4>
                 </div>
                 <div class="content-wrapper">
                     <ejs-grid ref='overviewgrid' id='overviewgrid' :dataSource="gridDataSource" :allowSelection='true' :allowSorting='true'
