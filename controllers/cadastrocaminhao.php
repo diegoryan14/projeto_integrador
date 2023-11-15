@@ -12,7 +12,7 @@ class Cadastrocaminhao extends Controller
 
     function index()
     {
-        Auth::autentica();
+        // Auth::autentica();
         $this->view->title = "Cadastro Caminhão";
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
         array_push($this->view->js, "views/cadastrocaminhao/app.vue.js");

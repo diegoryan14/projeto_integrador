@@ -1,6 +1,6 @@
 <?php
 
-class Index extends Controller
+class SelecionarCarga extends Controller
 {
 
     function __construct()
@@ -13,17 +13,11 @@ class Index extends Controller
     function index()
     {
         // Auth::autentica();
-        $this->view->title = "Home";
+        $this->view->title = "Selecionar Carga";
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
-        array_push($this->view->js, "views/index/app.vue.js");
-        array_push($this->view->css, "views/index/app.vue.css");
+        array_push($this->view->js, "views/selecionarCarga/app.vue.js");
+        array_push($this->view->css, "views/selecionarCarga/app.vue.css");
         $this->view->render('header');
         $this->view->render('footer');
     }
-
-    function cadastrarCarga()
-    {
-        $this->model->cadastrarCarga();
-    }
-
 }

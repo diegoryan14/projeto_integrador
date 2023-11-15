@@ -3,74 +3,93 @@ const AppTemplate = `
     <div id="primeiro-retangulo"> 
         <div style="display:block">
             <div class="h4-sel-carga">
-                <h2 class="test">INFORMAÇÕES SOBRE O CAMINHÃO</h2>
+                <h2 class="test">PERFIL</h2>
             </div>
             <div id="segundo-retangulo">
                 <div class="teste">
                     <div class="row">
-                        <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                            <ejs-dropdownlist 
-                                :dataSource='dataModelo' 
-                                ref="tipo-caminhao"
-                                style="text-transform: unset;"
-                                cssClass="e-outline"
-                                v-model="input.MODELO_CAMINHAO"
-                                maxlength="50"
-                                placeholder="Modelo*">
-                            </ejs-dropdownlist>
-                        </div>
-                        <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                        <div class="col-md-6 margin-input" style="margin-top: 6px;">
                             <ejs-textbox
                                 floatLabelType="Auto"
-                                ref="placa-caminhao"
+                                ref="nomes"
                                 maxlength="7"
-                                v-model="input.PLACA_CAMINHAO"
+                                v-model="input.NOMES"
                                 style="text-transform: unset;"
                                 cssClass="e-outline"
-                                placeholder="Placa*">
+                                placeholder="Nome*">
                             </ejs-textbox>
                         </div>
-                        <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                            <ejs-dropdownlist 
-                                :dataSource='dataModeloCarreta' 
+                        <div class="col-md-6 margin-input" style="margin-top: 6px;">
+                            <ejs-textbox
                                 floatLabelType="Auto"
-                                ref="tipo-carreta"
+                                ref="sobrenome"
+                                maxlength="7"
+                                v-model="input.SOBRENOME"
                                 style="text-transform: unset;"
                                 cssClass="e-outline"
-                                v-model="input.MODELO_CARRETA"
-                                maxlength="50"
-                                placeholder="Modelo da Carreta*">
-                            </ejs-dropdownlist>
+                                placeholder="Sobrenome  *">
+                            </ejs-textbox>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 margin-input" style="margin-top: 6px;">
                             <ejs-textbox
+                                mask="###.###.###-##"
                                 floatLabelType="Auto"
-                                ref="placa-carreta"
-                                id="placa-carreta"
+                                ref="cpf"
                                 maxlength="7"
-                                v-model="input.PLACA_CARRETA"
+                                v-model="input.CPF"
                                 style="text-transform: unset;"
                                 cssClass="e-outline"
-                                placeholder="Placa da carreta*">
+                                placeholder="CPF/CNPJ*">
                             </ejs-textbox>
                         </div>
-                        <div class="col-md-8 margin-input" style="margin-top: 6px;">
+                        <div class="col-md-4 margin-input" style="margin-top: 6px;">
                             <ejs-textbox
                                 floatLabelType="Auto"
-                                ref="DESCRICAO"
-                                id="DESCRICAO"
-                                maxlength="300"
-                                v-model="input.DESCRICAO"
+                                ref="email"
+                                maxlength="7"
+                                v-model="input.EMAIL"
                                 style="text-transform: unset;"
                                 cssClass="e-outline"
-                                placeholder="Descrição*">
+                                placeholder="Email*">
+                            </ejs-textbox>
+                        </div>
+                        <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                            <ejs-datepicker 
+                                floatLabelType="Auto"
+                                v-model="input.DATA_NASCIMENTO"
+                                cssClass="e-outline"
+                                placeholder="Data nascimento">
+                            </ejs-datepicker>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 margin-input" style="margin-top: 6px;">
+                            <ejs-textbox
+                                mask="000-000-0000"
+                                floatLabelType="Auto"
+                                maxlength="12"
+                                v-model="input.CELULAR"
+                                style="text-transform: unset;"
+                                cssClass="e-outline"
+                                placeholder="Celular*">
+                            </ejs-textbox>
+                        </div>
+                        <div class="col-md-6 margin-input" style="margin-top: 6px;">
+                            <ejs-textbox
+                                floatLabelType="Auto"
+                                ref="SENHA"
+                                maxlength="100"
+                                v-model="input.SENHA"
+                                style="text-transform: unset;"
+                                cssClass="e-outline"
+                                placeholder="Senha*">
                             </ejs-textbox>
                         </div>
                     </div>
                     <div style="margin-top: 20px; display:flex; justify-content:center; align-items:center">
-                        <button type="button" class="button"  @click="cadastrarCaminhao">Salvar</button>
+                        <button type="button" class="button"  @click="salvarPerfil">Salvar</button>
                     </div>
                 </div>
             </div>
@@ -95,7 +114,7 @@ Vue.component('AppVue', {
         }
     },
     methods: {
-        btnClick() {
+        salvarPerfil() {
             window.location.href = 'http://localhost/test/projeto_integrador/cadastroCarga';
         },
         cadastrarCaminhao(){

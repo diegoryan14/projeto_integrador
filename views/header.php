@@ -99,14 +99,14 @@
                             <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                             </a>
                             <div class="nav__dropdown-content">
-                                <a href="<?= URL ?>#" class="nav__dropdown-item">Minhas informações</a>
+                                <a href="<?= URL ?>perfil" class="nav__dropdown-item">Minhas informações</a>
                             </div>
-                            <div class="nav__dropdown-content">
+                            <!-- <div class="nav__dropdown-content">
                                 <a href="<?= URL ?>#" class="nav__dropdown-item">Minha Carteira</a>
-                            </div>
-                            <div class="nav__dropdown-content">
+                            </div> -->
+                            <!-- <div class="nav__dropdown-content">
                                 <a href="<?= URL ?>#" class="nav__dropdown-item">Minhas Entregas</a>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="nav__dropdown">
                             <a href="#" class="nav__link">
@@ -114,9 +114,6 @@
                                 <span class="nav__name">Meu caminhão</span>
                                 <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                             </a>
-                            <div class="nav__dropdown-content">
-                                <a href="<?= URL ?>#" class="nav__dropdown-item">Informações</a>
-                            </div>
                             <div class="nav__dropdown-content">
                                 <a href="<?= URL ?>cadastrocaminhao" class="nav__dropdown-item">Cadastrar Caminhão</a>
                             </div>
@@ -128,7 +125,10 @@
                                 <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                             </a>
                             <div class="nav__dropdown-content">
-                                <a href="<?= URL ?>#" class="nav__dropdown-item">Minhas Conversas</a>
+                                <a href="<?= URL ?>selecionarCarga" class="nav__dropdown-item">Minhas Conversas</a>
+                            </div>
+                            <div class="nav__dropdown-content">
+                                <a href="<?= URL ?>cadastroCarga" class="nav__dropdown-item">Minhas Conversas</a>
                             </div>
                         </div>
                     </div>

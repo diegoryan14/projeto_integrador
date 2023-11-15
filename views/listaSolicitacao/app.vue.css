@@ -22,6 +22,10 @@
     padding: 5em 2em;
 }
 
+.e-headertext {
+    color:black;
+}
+
 .test {
     margin-bottom: 100px;
 }
