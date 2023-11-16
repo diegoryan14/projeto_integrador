@@ -37,7 +37,7 @@ class login_Model extends Model
             Session::set('NOME', $result[0]->NOME);
             Session::set('TIPO_USUARIO', $result[0]->TIPO_USUARIO);
             Session::set('SEQ_USUARIO', $result[0]->SEQ_USUARIO);
-            $msg = array("code" => 1,"msg" => "success");
+            $msg = array("code" => 1,"msg" => "success", "TIPO_USUARIO" => $result[0]->TIPO_USUARIO);
         }
         else{
             $msg = array("code" => "0", "msg" => "Usuário Inexistente!!");

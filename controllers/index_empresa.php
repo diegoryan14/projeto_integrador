@@ -1,6 +1,6 @@
 <?php
 
-class Perfil extends Controller
+class Index_empresa extends Controller
 {
 
     function __construct()
@@ -13,20 +13,19 @@ class Perfil extends Controller
     function index()
     {
         // Auth::autentica();
-        $this->view->title = "Pefil";
+        $this->view->title = "Home";
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
-        array_push($this->view->js, "views/perfil/app.vue.js");
-        array_push($this->view->css, "views/perfil/app.vue.css");
+        array_push($this->view->js, "views/index_empresa/app.vue.js");
+        array_push($this->view->css, "views/index_empresa/app.vue.css");
         $this->view->render('header');
         $this->view->render('footer');
     }
-
-    function getUsuario()
+    function get_cargas()
     {
-        $this->model->getUsuario();
+        $this->model->get_cargas();
     }
-    function salvarPerfil()
+    function aceitarCarga()
     {
-        $this->model->salvarPerfil();
+        $this->model->aceitarCarga();
     }
 }

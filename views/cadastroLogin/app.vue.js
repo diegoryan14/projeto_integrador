@@ -120,7 +120,7 @@ Vue.component('AppVue', {
     },
     methods: {
         btnClick() {
-            window.location.href = 'http://localhost/test/projeto_integrador/loginPage';
+            window.location.href = 'http://localhost/test/projeto_integrador/login';
         },
         Cadastrar_usuario(){
             if(this.input.nome == null || this.input.nome.trim() == ''){

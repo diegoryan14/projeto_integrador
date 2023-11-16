@@ -12,8 +12,8 @@ const AppTemplate = `
                             <ejs-textbox
                                 floatLabelType="Auto"
                                 ref="nomes"
-                                maxlength="7"
-                                v-model="input.NOMES"
+                                maxlength="60"
+                                v-model="input.NOME"
                                 style="text-transform: unset;"
                                 cssClass="e-outline"
                                 placeholder="Nome*">
@@ -37,18 +37,19 @@ const AppTemplate = `
                                 mask="###.###.###-##"
                                 floatLabelType="Auto"
                                 ref="cpf"
-                                maxlength="7"
+                                maxlength="11"
+                                disabled="true"
                                 v-model="input.CPF"
                                 style="text-transform: unset;"
                                 cssClass="e-outline"
-                                placeholder="CPF/CNPJ*">
+                                placeholder="CPF">
                             </ejs-textbox>
                         </div>
                         <div class="col-md-4 margin-input" style="margin-top: 6px;">
                             <ejs-textbox
                                 floatLabelType="Auto"
                                 ref="email"
-                                maxlength="7"
+                                maxlength="50"
                                 v-model="input.EMAIL"
                                 style="text-transform: unset;"
                                 cssClass="e-outline"
@@ -103,62 +104,65 @@ Vue.component('AppVue', {
     data: function() {
         return {
             input: {
-                PLACA_CAMINHAO: null,
-                MODELO_CAMINHAO: null,
-                PLACA_CARRETA: null,
-                MODELO_CARRETA: null,
-                DESCRICAO: null
-            },
-            dataModelo: [],
-            dataModeloCarreta:[]
+                NOME: null,
+                CPF: null,
+                EMAIL: null,
+                DATA_NASCIMENTO: null,
+                CELULAR: null,
+                SENHA: null,
+                SOBRENOME: null
+            }
         }
     },
     methods: {
-        salvarPerfil() {
-            window.location.href = 'http://localhost/test/projeto_integrador/cadastroCarga';
+        getUsuario(){
+            axios.post(BASE + "/perfil/getUsuario").then((res) => {
+                this.input.NOME = res.data[0].NOME;
+                this.input.EMAIL = res.data[0].EMAIL;
+                this.input.CPF = res.data[0].CPF;
+                // this.input.CELULAR = res.data[0].CELULAR;
+                // this.input.DATA_NASCIMENTO = res.data[0].DATA_NASCIMENTO;
+            })
         },
-        cadastrarCaminhao(){
-            
-            // var placa = "ABC1234";
-            // const regexPlaca = /^[a-zA-Z]{3}[0-9]{4}$/;
-            
-            if(this.input.MODELO_CAMINHAO == null || this.input.MODELO_CAMINHAO.trim() == ''){
-                alert("Por Favor, Insira a Modelo do Caminhão!");
+        salvarPerfil() {
+            if(this.input.NOME == null){
+                alert('Por Favor, insira o nome!!');
                 return;
             }
-            if(this.input.PLACA_CAMINHAO == null || this.input.PLACA_CAMINHAO.trim() == ''){
-                alert("Por Favor, Insira a Placa do Caminhão!");
-                return;
-            }
-            if((this.input.PLACA_CAMINHAO.trim()).length < 7){
-                alert("Por Favor, Digite corretamenta a placa do caminhao!");
+            if(this.input.EMAIL == null){
+                alert('Por favor, insira o E-mail!!');
                 return;
             }
             var obj = {
-                'PLACA_CAMINHAO': this.input.PLACA_CAMINHAO,
-                'MODELO_CAMINHAO': this.input.MODELO_CAMINHAO,
-                'PLACA_CARRETA': this.input.PLACA_CARRETA,
-                'MODELO_CARRETA': this.input.MODELO_CARRETA,
-                'DESCRICAO': this.input.DESCRICAO
+                'NOME': this.input.NOME,
+                'EMAIL': this.input.EMAIL,
+                'DATA_NASCIMENTO': this.input.DATA_NASCIMENTO,
+                'CELULAR': this.input.CELULAR
             }
-            axios.post(BASE + "/cadastrocaminhao/cadastrarCaminhao",obj).then((res) => {
-                if(res.data.code == "0"){
+            axios.post(BASE + "/perfil/salvarPerfil",obj).then((res) => {
+                if(res.data.code == 0){
                     alert(res.data.msg);
+                    this.limpar_campos();
+                    this.getUsuario();
                     return;
                 }
                 alert(res.data.msg);
                 this.limpar_campos();
+                this.getUsuario();
             })
         },
         limpar_campos(){
-            this.input.PLACA_CAMINHAO = null;
-            this.input.MODELO_CAMINHAO = null;
-            this.input.PLACA_CARRETA = null;
-            this.input.MODELO_CARRETA = null;
-            this.input.DESCRICAO = null;
+            this.input.NOME = null;
+            this.input.EMAIL = null;
+            this.input.CPF = null;
+            this.input.DATA_NASCIMENTO = null;
+            this.input.CELULAR = null;
+            this.input.SENHA = null;
+            this.input.SOBRENOME = null;
         }
     },
     mounted(){
+        this.getUsuario();
     }
 })
 

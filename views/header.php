@@ -128,7 +128,7 @@
                                 <a href="<?= URL ?>selecionarCarga" class="nav__dropdown-item">Minhas Conversas</a>
                             </div>
                             <div class="nav__dropdown-content">
-                                <a href="<?= URL ?>cadastroCarga" class="nav__dropdown-item">Minhas Conversas</a>
+                                <a href="<?= URL ?>cadastroCarga" class="nav__dropdown-item">Postar Cargas</a>
                             </div>
                         </div>
                     </div>

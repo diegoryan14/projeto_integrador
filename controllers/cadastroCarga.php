@@ -21,10 +21,10 @@ class CadastroCarga extends Controller
         $this->view->render('footer');
     }
 
-    function get_cargas()
-    {
-        $this->model->get_cargas();
-    }
+    // function get_cargas()
+    // {
+    //     $this->model->get_cargas();
+    // }
 
     function get_empresa()
     {

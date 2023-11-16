@@ -21,9 +21,13 @@ class Index extends Controller
         $this->view->render('footer');
     }
 
-    function cadastrarCarga()
+    function get_cargas()
     {
-        $this->model->cadastrarCarga();
+        $this->model->get_cargas();
     }
 
+    function solicitarCarga()
+    {
+        $this->model->solicitarCarga();
+    }
 }

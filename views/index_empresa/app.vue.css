@@ -1,0 +1,91 @@
+@import url('https://fonts.cdnfonts.com/css/lexend-deca');
+
+
+.control-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: -13em; */
+    margin-bottom: 5em;
+}
+
+.titulo {
+    position: relative;
+    background-color: #F0F6FF;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    border-radius: 20px;
+}
+.card-body {
+    background-color: white;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-radius: 10px;
+}
+
+.test2{
+    margin-top: 1.5em;
+}
+
+.bloco-container {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row; 
+    gap: 1em; 
+    align-items: flex-start; 
+}
+
+.bloco-cad-caminhao {
+    color: black;
+    background-color: white;
+}
+
+.test {
+    font-family: lexend deca;
+    margin-top: 0.5em;
+}
+
+.h4-sel-carga{
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+.p-text{
+    width: 400px;
+    vertical-align: inherit;
+    color: gray;
+    text-align: center;
+}
+
+.button{
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.disp-carga{
+    color: black;
+    background-color: white;
+    width: 500px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.test3{
+    margin-top: -15em;
+}
+
+.disp-carga{
+    color: black;
+}
+
+#text-disp{
+    width: 5em;
+}
+
+tr {
+    color: black !important;
+  }
+  

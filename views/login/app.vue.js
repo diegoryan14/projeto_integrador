@@ -100,9 +100,19 @@ Vue.component('AppVue', {
                     alert(res.data.msg);
                     return;
                 }
-                window.location.href = BASE + '/cadastroCarga/';
-                this.limpar_campos();
-                return;
+                if(res.data.code == '1'){
+                    console.log(res);
+                    if(res.data.TIPO_USUARIO == 1){
+                        window.location.href = BASE + '/index/';
+                        this.limpar_campos();
+                        return;
+                    }
+                    if(res.data.TIPO_USUARIO == 2){
+                        window.location.href = BASE + '/index_empresa/';
+                        this.limpar_campos();
+                        return;
+                    }
+                }
             })
         },
         limpar_campos(){
