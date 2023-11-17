@@ -3,29 +3,31 @@ const AppTemplate = `
     <div id="primeiro-retangulo"> 
         <div style="display:block">
             <div class="h4-sel-carga">
-                <h2 class="test">LISTA DE SOLICITAÇÕES</h2>
+                <h2 class="test">ENTRAR EM CONTATO</h2>
             </div>
             <div id="segundo-retangulo">
                 <div class="teste">
-                <div class="row">
-                        <div class="col-lg-12 control-section">
-                            <div>
-                                <ejs-grid :dataSource="data" >
-                                    <e-columns>
-                                        <e-column clipMode='EllipsisWithTooltip' class='th-table' field='EMPRESAORIGEM' headerText='Empresa Origem' width='30px' textAlign='Left'></e-column>
-                                        <e-column clipMode='EllipsisWithTooltip' class='th-table' field='EMPRESADESTINO' headerText='Empresa Destino' width='30px'></e-column>
-                                        <e-column clipMode='EllipsisWithTooltip' class='th-table' field='PESOCARGA' headerText='Peso' width='20' textAlign='Left'></e-column>
-                                        <e-column clipMode='EllipsisWithTooltip' class='th-table' field='DATARETIRADA' headerText='Data Retirada' width='20' format="yMd" textAlign='Left'></e-column>
-                                        <e-column clipMode='EllipsisWithTooltip' class='th-table' field='DATAENTREGA' headerText='Data Entrega' width='20' format="yMd" textAlign='Left'></e-column>
-                                        <e-column clipMode='EllipsisWithTooltip' class='th-table' field='PRECOVIAGEM' headerText='Preço' format='C2' width='20'></e-column>
-                                        <e-column clipMode='EllipsisWithTooltip' class='th-table' field='OBSERVACOES' headerText='Observações' width='20'></e-column>
-                                    </e-columns>
-                                </ejs-grid>
-                            </div>
+                    <div>
+                        <h4>Empresa</h4>
+                        <span>Pão & CIA</span>
+                        <h4>Sobre a Empresa</h4>
+                        <p>farfa rgrgsr agr rg</p>
+                    </div>
+                    <div>
+                        <h4>Sobre a Carga</h4>
+                        <div>
+                            <p>informação</p>
+                            <p>informação</p>
+                            <p>informação</p>
+                            <p>informação</p>
                         </div>
                     </div>
                 </div>
+                <div style="margin-top: 20px; display:flex; justify-content:center; align-items:center">
+                    <button type="button" class="button"  >Eu quero!</button>
+                </div>
             </div>
+
         </div>
     </div>       
 </div>
