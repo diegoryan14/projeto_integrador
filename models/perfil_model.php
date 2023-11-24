@@ -24,7 +24,7 @@ class Perfil_Model extends Model
                                         CPF,
                                         EMAIL,
                                         -- CELULAR,
-                                        -- DATA_NASCIMENTO,
+                                        -- IDADE,
                                         TIPO_USUARIO
                                     FROM
                                         USUARIO
@@ -32,12 +32,6 @@ class Perfil_Model extends Model
                                         CPF = :CPF
                                         AND ATIVO = 'S'", $dados);
         echo (json_encode($result));
-        // if (count($result) > 0) {
-        //     $msg = array("code" => 1,"msg" => "success");
-        // }
-        // else{
-        //     $msg = array("code" => "0", "msg" => "Usuário não encontrado!!");
-        // }
     }
 
     public function salvarPerfil()
@@ -47,13 +41,13 @@ class Perfil_Model extends Model
         $nome = $post->NOME;
         $email = $post->EMAIL;
         // $celular = $post->CELULAR;
-        // $data_nascimento = $post->DATA_NASCIMENTO;
+        // $idade = $post->IDADE;
 
         Session::init();   
         $o = Session::get('CPF');
         $cpf = $o;
         
-        $dadosSave = array('NOME' => $nome, 'EMAIL' => $email /*, 'CELULAR' => $celular, 'DATA_NASCIMENTO' => $data_nascimento*/);
+        $dadosSave = array('NOME' => $nome, 'EMAIL' => $email /*, 'CELULAR' => $celular, 'IDADE' => $idade*/);
         $result = $this->db->update('JOBTRUCKER.USUARIO', $dadosSave,"CPF=$cpf");
         if($result){
             exit(json_encode(array("code" => "1", "msg" => "Dados atualizado com Sucesso!!")));

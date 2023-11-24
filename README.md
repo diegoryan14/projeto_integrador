@@ -14,7 +14,7 @@
     A ferramenta é útil para otimizar e simplificar a logística de transporte de cargas, conectando efetivamente motoristas e empresas que precisam movimentar suas mercadorias.
 
 # Tecnologia utilizadas
-    Vue js, PHP, MySQL(O script do banco de dados está em um arquivo txt dentro da pasta VIEWS -> pasta BANCO_DE_DADOS -> BANCO.TXT)
+    Vue js, PHP, CSS, HTML, MySQL(O script do banco de dados está em um arquivo txt dentro da pasta 'VIEWS' -> 'BANCO_DE_DADOS' -> 'BANCO.TXT')
 
 # Instalação do Projeto
     1 - Fazer a instalação do App XAMPP e rodar o BANCO DE DADOS (MySQL)

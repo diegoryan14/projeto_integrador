@@ -82,7 +82,11 @@ Vue.component('AppVue', {
                                             <div class="col col-md-12">
                                                 <h4 class="text-center" style="font-weight: bold;">Dados da Empresa</h4>
                                             </div>
-                                            <div></div>
+                                            <div>
+                                                <p><b>Nome da Empresa:</b> {{nomeEmpresa}}</p>
+                                                <p><b>Localização:</b> {{localizacao}}</p>
+                                                <p><b>Situação da Carga:</b> {{situacao}}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </ejs-dialog> 
@@ -91,7 +95,10 @@ Vue.component('AppVue', {
 						data: function () { 
 							return {
 								data: {},
-                                modalButtons: null
+                                modalButtons: null,
+                                nomeEmpresa: null,
+                                localizacao: null,
+                                situacao: null,
 							}; 
 						},
 						methods: {
@@ -102,15 +109,26 @@ Vue.component('AppVue', {
                                         return;
                                     }
                                     alert(res.data.msg);
+                                    this.$parent.$parent.get_cargas();
                                     return;
                                 })
                             },
-                            abrirModal(){
+                            abrirModal(data){
                                 this.$refs.modalEmpresa.show();
 								this.modalButtons = [{click: this.fecharModal, buttonModel: {content: '<i class="fas fa-times-circle"></i>&nbsp&nbspFechar'}}];
+                                this.nomeEmpresa = data.EMP_CADASTROU;
+                                this.localizacao = data.LOCAL_PARTIDA;
+                                if(data.CARGA_ACEITA == 'S'){
+                                    this.situacao = 'Carga Aceita!! seguir as informações da carga para prosseguir.';
+                                } else {
+                                    this.situacao = 'Solicitação Pendente!! Aguardar resposta da Empresa ' + data.EMP_CADASTROU;
+                                }
                             },
                             fecharModal(){
                                 this.$refs.modalEmpresa.hide();
+                                this.nomeEmpresa = '';
+                                this.localizacao = '';
+                                this.situacao = '';
                             }
 						}
 					})

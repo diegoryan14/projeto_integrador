@@ -8,7 +8,7 @@ const AppTemplate = `
             <div id="segundo-retangulo">
                 <div class="teste">
                     <div class="row">
-                        <div class="col-md-6 margin-input" style="margin-top: 6px;">
+                        <div class="col-md-12 margin-input" style="margin-top: 6px;">
                             <ejs-textbox
                                 floatLabelType="Auto"
                                 ref="nomes"
@@ -19,31 +19,20 @@ const AppTemplate = `
                                 placeholder="Nome*">
                             </ejs-textbox>
                         </div>
-                        <div class="col-md-6 margin-input" style="margin-top: 6px;">
-                            <ejs-textbox
-                                floatLabelType="Auto"
-                                ref="sobrenome"
-                                maxlength="7"
-                                v-model="input.SOBRENOME"
-                                style="text-transform: unset;"
-                                cssClass="e-outline"
-                                placeholder="Sobrenome  *">
-                            </ejs-textbox>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                            <ejs-textbox
+                            <ejs-maskedtextbox
+                                ref="CPF"
+                                id="CPF"
                                 mask="###.###.###-##"
-                                floatLabelType="Auto"
-                                ref="cpf"
-                                maxlength="11"
                                 disabled="true"
-                                v-model="input.CPF"
-                                style="text-transform: unset;"
+                                floatLabelType="Auto"
                                 cssClass="e-outline"
-                                placeholder="CPF">
-                            </ejs-textbox>
+                                maxlength="11"
+                                placeholder='CPF'
+                                v-model="input.CPF">
+                            </ejs-maskedtextbox>
                         </div>
                         <div class="col-md-4 margin-input" style="margin-top: 6px;">
                             <ejs-textbox
@@ -57,36 +46,30 @@ const AppTemplate = `
                             </ejs-textbox>
                         </div>
                         <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                            <ejs-datepicker 
+                            <ejs-maskedtextbox
+                                ref="idade"
+                                id="idade"
+                                mask="##"
                                 floatLabelType="Auto"
-                                v-model="input.DATA_NASCIMENTO"
                                 cssClass="e-outline"
-                                placeholder="Data nascimento">
-                            </ejs-datepicker>
+                                maxlength="11"
+                                placeholder='Idade'
+                                v-model="input.IDADE">
+                            </ejs-maskedtextbox>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 margin-input" style="margin-top: 6px;">
-                            <ejs-textbox
-                                mask="000-000-0000"
+                            <ejs-maskedtextbox
+                                ref="celular"
+                                id="celular"
+                                mask="(##)#####-####"
                                 floatLabelType="Auto"
-                                maxlength="12"
-                                v-model="input.CELULAR"
-                                style="text-transform: unset;"
                                 cssClass="e-outline"
-                                placeholder="Celular*">
-                            </ejs-textbox>
-                        </div>
-                        <div class="col-md-6 margin-input" style="margin-top: 6px;">
-                            <ejs-textbox
-                                floatLabelType="Auto"
-                                ref="SENHA"
-                                maxlength="100"
-                                v-model="input.SENHA"
-                                style="text-transform: unset;"
-                                cssClass="e-outline"
-                                placeholder="Senha*">
-                            </ejs-textbox>
+                                maxlength="11"
+                                placeholder='Celular'
+                                v-model="input.CELULAR">
+                            </ejs-maskedtextbox>
                         </div>
                     </div>
                     <div style="margin-top: 20px; display:flex; justify-content:center; align-items:center">
@@ -107,10 +90,8 @@ Vue.component('AppVue', {
                 NOME: null,
                 CPF: null,
                 EMAIL: null,
-                DATA_NASCIMENTO: null,
-                CELULAR: null,
-                SENHA: null,
-                SOBRENOME: null
+                IDADE: null,
+                CELULAR: null
             }
         }
     },
@@ -121,7 +102,7 @@ Vue.component('AppVue', {
                 this.input.EMAIL = res.data[0].EMAIL;
                 this.input.CPF = res.data[0].CPF;
                 // this.input.CELULAR = res.data[0].CELULAR;
-                // this.input.DATA_NASCIMENTO = res.data[0].DATA_NASCIMENTO;
+                // this.input.IDADE = res.data[0].IDADE;
             })
         },
         salvarPerfil() {
@@ -133,10 +114,16 @@ Vue.component('AppVue', {
                 alert('Por favor, insira o E-mail!!');
                 return;
             }
+            if(this.input.IDADE != null || this.input.IDADE != ''){
+                if(parseInt(this.input.IDADE) < 21){
+                    alert('A sua Idade não pode ser menor que 21 anos!!');
+                    return;
+                }
+            }
             var obj = {
                 'NOME': this.input.NOME,
                 'EMAIL': this.input.EMAIL,
-                'DATA_NASCIMENTO': this.input.DATA_NASCIMENTO,
+                'IDADE': this.input.IDADE,
                 'CELULAR': this.input.CELULAR
             }
             axios.post(BASE + "/perfil/salvarPerfil",obj).then((res) => {
@@ -155,10 +142,8 @@ Vue.component('AppVue', {
             this.input.NOME = null;
             this.input.EMAIL = null;
             this.input.CPF = null;
-            this.input.DATA_NASCIMENTO = null;
+            this.input.IDADE = null;
             this.input.CELULAR = null;
-            this.input.SENHA = null;
-            this.input.SOBRENOME = null;
         }
     },
     mounted(){
