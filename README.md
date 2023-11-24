@@ -18,16 +18,22 @@
 
 # Instalação do Projeto
     1 - Fazer a instalação do App XAMPP e rodar o BANCO DE DADOS (MySQL)
-        
+    ![img_xampp](https://github.com/drp014/projeto_integrador/assets/141743253/55b69497-b63b-49fa-b729-817809a9188e)
+
     2 - Acessar a pasta do XAMPP
-    
+    ![acesso_xamp](https://github.com/drp014/projeto_integrador/assets/141743253/9eac488d-0f93-411a-8518-88bbade553d7)
+
     3 - Dentro do XAMPP acessar a pasta 'htdocs'
+    ![acesso_htdocs](https://github.com/drp014/projeto_integrador/assets/141743253/656aca05-ea6e-4e2d-b37e-8123fa3ef628)
 
     4 - Dentro do 'htdocs' criar uma pasta chamada 'test'
+    ![acesso_test](https://github.com/drp014/projeto_integrador/assets/141743253/e3101e66-074b-49a6-a632-3bb9e90c25b3)
 
     5 - E dentro dessa pasta 'test' colocar o projeto com o nome 'projeto_integrador'
+    ![ultima_pasta](https://github.com/drp014/projeto_integrador/assets/141743253/3c3df70d-2789-4ced-b534-effb2e460d99)
 
     6 - E por fim, dentro da pasta 'projeto_integrador' devera ficar assim
+    ![dentro_da_ultima_pasta](https://github.com/drp014/projeto_integrador/assets/141743253/bb513196-f4d2-4f4c-9e98-bdf82949756e)
 
 #### OBSERVAÇÃO
     - ti.estagiario é a Giovanna
