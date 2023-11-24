@@ -27,7 +27,7 @@
 
     5 - E dentro dessa pasta 'test' colocar o projeto com o nome 'projeto_integrador'
 
-    6 - E por fim, dentro da pasta 'projeto_integrador' devera ficar assim.
+    6 - E por fim, dentro da pasta 'projeto_integrador' devera ficar assim
 
 #### OBSERVAÇÃO
     - ti.estagiario é a Giovanna
