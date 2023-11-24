@@ -25,4 +25,8 @@ class login extends Controller
     {
         $this->model->Login();
     }
+    function LoginEmp()
+    {
+        $this->model->LoginEmp();
+    }
 }

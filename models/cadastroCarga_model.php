@@ -71,7 +71,7 @@ class CadastroCarga_Model extends Model
         // $produto = $post->PRODUTO;
         
         Session::init();   
-        $o = Session::get('SEQ_USUARIO');
+        $o = Session::get('SEQ');
         $empresa_cadastrou = $o;
         
         if($empresa_destino == null){

@@ -29,7 +29,7 @@ class Cadastrocaminhao_Model extends Model
         }
         
         Session::init();   
-        $o = Session::get('SEQ_USUARIO');
+        $o = Session::get('SEQ');
         $seq_usuario = $o;
 
         if($modelo_caminhao == null){

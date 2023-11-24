@@ -4,58 +4,113 @@ const AppTemplate = `
         <div id="formulario-cadastro" class="row">
             <div class="row">
                 <div class="col-md-8 margin-input">
-                    <h1 class="login-text text-center">LOGIN</h1>
+                    <h4 class="login-text text-center" style="color: black;">{{nomeLogin}}</h4>
                 </div>
             </div>
-            <!-- ******************CPF*************** -->
-            <div class="row">
-                <div class="col-md-8 margin-input">
-                    <ejs-maskedtextbox
-                        ref="CPF"
-                        id="CPF"
-                        mask="###.###.###-##"
-                        floatLabelType="Auto"
-                        cssClass="e-outline"
-                        maxlength="14"
-                        placeholder='CPF'
-                        v-model="input.cpf">
-                    </ejs-maskedtextbox>
-                </div>
-            </div>                
-            <!-- ******************SENHA*************** -->
-            <div class="row margin-input" style="margin-top: 6px;">
-                <div class="col-md-8 margin-input">
-                    <ejs-textbox 
-                        floatLabelType="Auto"
-                        ref="senha"
-                        id="senha"
-                        v-model="input.senha"
-                        type="password"
-                        style="text-transform: unset;"
-                        maxlength="30"
-                        cssClass="e-outline"
-                        placeholder="Senha">
-                    </ejs-textbox>
-                </div>
-            </div>
-            <!-- BOTÃO -->
-            <div class="row text-center" style="margin-top: 2em">
-                <div class="col-md-12 margin-input">
+            <div v-if="TIPO_USUARIO == 'CAM'">
+                <!-- ******************CPF*************** -->
+                <div class="row">
                     <div class="col-md-8 margin-input">
-                        <ejs-progressbutton 
-                            id="zoomin"
-                            content="ENTRAR"
-                            v-on:click.native="Login"
-                            :enableProgress="true"
-                            :spinSettings="spinCenter"
-                            :animationSettings="zoomIn"
-                            cssClass="e-round-corner">
-                        </ejs-progressbutton>
+                        <ejs-maskedtextbox
+                            ref="CPF"
+                            id="CPF"
+                            mask="###.###.###-##"
+                            floatLabelType="Auto"
+                            cssClass="e-outline"
+                            maxlength="14"
+                            placeholder='CPF'
+                            v-model="input.cpf">
+                        </ejs-maskedtextbox>
                     </div>
                 </div>                
-                <div class="col-md-12 margin-input">
+                <!-- ******************SENHA*************** -->
+                <div class="row margin-input" style="margin-top: 6px;">
                     <div class="col-md-8 margin-input">
-                        <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='btnClick'>Não tem login? Cadastre-se</ejs-button>
+                        <ejs-textbox 
+                            floatLabelType="Auto"
+                            ref="senha"
+                            id="senha"
+                            v-model="input.senha"
+                            type="password"
+                            style="text-transform: unset;"
+                            maxlength="30"
+                            cssClass="e-outline"
+                            placeholder="Senha">
+                        </ejs-textbox>
+                    </div>
+                </div>
+                <!-- BOTÃO -->
+                <div class="row text-center" style="margin-top: 2em">
+                    <div class="col-md-12 margin-input">
+                        <div class="col-md-8 margin-input">
+                            <ejs-progressbutton 
+                                id="zoomin"
+                                content="ENTRAR"
+                                v-on:click.native="Login"
+                                :enableProgress="true"
+                                :spinSettings="spinCenter"
+                                :animationSettings="zoomIn"
+                                cssClass="e-round-corner">
+                            </ejs-progressbutton>
+                        </div>
+                    </div>              
+                    <div class="col-md-12 margin-input">
+                        <div class="col-md-8 margin-input">
+                            <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='btnClick'>Não tem login? Cadastre-se</ejs-button><br>
+                            <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='infoEmp'>Logar como Empresa</ejs-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="TIPO_USUARIO == 'EMP'">
+                <div class="row">
+                    <div class="col-md-8 margin-input">
+                        <ejs-maskedtextbox
+                            ref="CNPJ"
+                            id="CNPJ"
+                            mask="##.###.###/####-##"
+                            floatLabelType="Auto"
+                            cssClass="e-outline"
+                            maxlength="14"
+                            placeholder='CNPJ'
+                            v-model="input.cnpj">
+                        </ejs-maskedtextbox>
+                    </div>
+                </div>
+                <div class="row margin-input" style="margin-top: 6px;">
+                    <div class="col-md-8 margin-input">
+                        <ejs-textbox 
+                            floatLabelType="Auto"
+                            ref="senha"
+                            id="senha"
+                            v-model="input.senhaEmp"
+                            type="password"
+                            style="text-transform: unset;"
+                            maxlength="30"
+                            cssClass="e-outline"
+                            placeholder="Senha">
+                        </ejs-textbox>
+                    </div>
+                </div>
+                <div class="row text-center" style="margin-top: 2em">
+                    <div class="col-md-12 margin-input">
+                        <div class="col-md-8 margin-input">
+                            <ejs-progressbutton 
+                                id="zoomin"
+                                content="ENTRAR"
+                                v-on:click.native="LoginEmp"
+                                :enableProgress="true"
+                                :spinSettings="spinCenter"
+                                :animationSettings="zoomIn"
+                                cssClass="e-round-corner">
+                            </ejs-progressbutton>
+                        </div>
+                    </div>              
+                    <div class="col-md-12 margin-input">
+                        <div class="col-md-8 margin-input">
+                            <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='btnClick'>Não tem login? Cadastre-se</ejs-button><br>
+                            <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='infoCam'>Logar como Caminhoneiro</ejs-button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,22 +127,34 @@ Vue.component('AppVue', {
             zoomIn : { effect: 'ZoomIn' },
             input: {
                 cpf: null,
-                senha: null
-            }
+                senha: null,
+                cnpj: null,
+                senhaEmp: null
+            },
+            TIPO_USUARIO: 'CAM',
+            nomeLogin: 'LOGIN CAMINHONEIRO'
         }
     },
     methods: {
+        infoEmp(){
+            this.TIPO_USUARIO = 'EMP';
+            this.nomeLogin = 'LOGIN EMPRESA';
+        },
+        infoCam(){
+            this.TIPO_USUARIO = 'CAM';
+            this.nomeLogin = 'LOGIN CAMINHONEIRO';
+        },
         btnClick() {
             window.location.href = 'http://localhost/test/projeto_integrador/cadastroLogin';
         },
         Login(){
             if(this.input.cpf == null || this.input.cpf.trim() == ''){
-                alert('Por Favor, Insira o CPF');
+                alert('Por Favor, Insira o CPF!!');
                 this.$refs.CPF.focusIn();
                 return;
             }
             if(this.input.senha == null || this.input.senha.trim() == ''){
-                alert('Por Favor, Insira a senha');
+                alert('Por Favor, Insira a senha!!');
                 this.$refs.senha.focusIn();
                 return;
             }
@@ -98,6 +165,7 @@ Vue.component('AppVue', {
             axios.post(BASE + "/login/Login",obj).then((res) => {
                 if(res.data.code == '0'){
                     alert(res.data.msg);
+                    this.limpar_campos();
                     return;
                 }
                 if(res.data.code == '1'){
@@ -107,17 +175,41 @@ Vue.component('AppVue', {
                         this.limpar_campos();
                         return;
                     }
-                    if(res.data.TIPO_USUARIO == 2){
-                        window.location.href = BASE + '/index_empresa/';
-                        this.limpar_campos();
-                        return;
-                    }
+                }
+            })
+        },
+        LoginEmp(){
+            if(this.input.cnpj == null || this.input.cnpj.trim() == ''){
+                alert('Por Favor, Insira o CNPJ!!');
+                return;
+            }
+            if(this.input.senhaEmp == null || this.input.senhaEmp.trim() == ''){
+                alert('Por Favor, Insira a Senha!!')
+                return;
+            }
+            var obj = {
+                'CNPJ': this.input.cnpj,
+                'SENHA': this.input.senhaEmp
+            }
+            axios.post(BASE + "/login/LoginEmp",obj).then((res) => {
+                console.log(res);
+                if(res.data.code == '0'){
+                    alert(res.data.msg);
+                    this.limpar_campos();
+                    return;
+                }
+                if(res.data.code == '1'){
+                    window.location.href = BASE + '/index_empresa/';
+                    this.limpar_campos();
+                    return;
                 }
             })
         },
         limpar_campos(){
             this.input.cpf = '';
             this.input.senha = '';
+            this.input.cnpj = '';
+            this.input.senhaEmp = '';
         }
     },
     mounted(){

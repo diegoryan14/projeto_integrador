@@ -59,17 +59,39 @@ Vue.component('AppVue', {
 									</ejs-tooltip>
                                     <ejs-tooltip
 										style="cursor: pointer;"
-                                        v-else
-										content="Informações da Carga"
+										content="Dados da Empresa"
 										position='center'>
-										<span style="font-weight: bold" @click="infoCarga(data)"><i class="fas fa-info-circle"></i></span>
+										<span style="font-weight: bold" @click="abrirModal(data)"><i class="fas fa-info-circle"></i></span>
 									</ejs-tooltip>
 								</div>
+                                <ejs-dialog
+                                    isModal='true'
+                                    :buttons="modalButtons"
+                                    ref="modalEmpresa"
+                                    :open="(args) => {args.preventFocus = true;}"
+                                    v-bind:visible="false"
+                                    :animationSettings="{ effect: 'Zoom' }"
+                                    :showCloseIcon='false'
+                                    :closeOnEscape='false'
+                                    zIndex="1001"
+                                    target="body"
+                                    style="margin: 10px"
+                                    width="1000px">
+                                    <div class="row">
+                                        <div class="row-input" style="margin: 0px;">
+                                            <div class="col col-md-12">
+                                                <h4 class="text-center" style="font-weight: bold;">Dados da Empresa</h4>
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </ejs-dialog> 
 							</div>
 							`,
 						data: function () { 
 							return {
-								data: {}
+								data: {},
+                                modalButtons: null
 							}; 
 						},
 						methods: {
@@ -83,16 +105,12 @@ Vue.component('AppVue', {
                                     return;
                                 })
                             },
-                            infoCarga(args){
-                                // terminar a parte de info da carga
-                                // axios.post(BASE + "/index/infoCarga",args).then((res) => {
-                                //     if(res.data.code == 0){
-                                //         alert(res.data.msg);
-                                //         return;
-                                //     }
-                                //     alert(res.data.msg);
-                                //     return;
-                                // })
+                            abrirModal(){
+                                this.$refs.modalEmpresa.show();
+								this.modalButtons = [{click: this.fecharModal, buttonModel: {content: '<i class="fas fa-times-circle"></i>&nbsp&nbspFechar'}}];
+                            },
+                            fecharModal(){
+                                this.$refs.modalEmpresa.hide();
                             }
 						}
 					})

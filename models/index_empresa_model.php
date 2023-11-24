@@ -12,7 +12,7 @@ class Index_empresa_Model extends Model
     {
         
         Session::init();   
-        $o = Session::get('SEQ_USUARIO');
+        $o = Session::get('SEQ');
         // $empresa_cadastrou = $o;
         $empresa_cadastrou = 1;
 
@@ -66,7 +66,7 @@ class Index_empresa_Model extends Model
         $seq_carga = $post->SEQ_CARGA;
         
         Session::init();   
-        $o = Session::get('SEQ_USUARIO');
+        $o = Session::get('SEQ');
         $seq_usuario = $o;
 
         $dadosSave = array('EMPRESA_ACEITOU' => 'S');

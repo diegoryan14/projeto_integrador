@@ -55,7 +55,7 @@ class Index_Model extends Model
         $seq_carga = $post->SEQ_CARGA;
         
         Session::init();   
-        $o = Session::get('SEQ_USUARIO');
+        $o = Session::get('SEQ');
         $seq_usuario = $o;
 
         $result = $this->db->insert('PEDIDO', array('SEQ_EMPRESA' => $seq_empresa, 'SEQ_CARGA' => $seq_carga, 'USUARIO_SOLICITOU'=> $seq_usuario));
