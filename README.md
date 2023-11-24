@@ -18,6 +18,7 @@
 
 # Instalação do Projeto
     1 - Fazer a instalação do App XAMPP e rodar o BANCO DE DADOS (MySQL)
+        <img src="http://localhost/test/projeto_integrador/public/images/img_xampp.png" alt="XAMPP">
         
     2 - Acessar a pasta do XAMPP
     
