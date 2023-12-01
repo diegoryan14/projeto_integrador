@@ -25,7 +25,7 @@ class Index_Model extends Model
                 CAD_CARGA.DESCRICAO,
                 EMP_CAD.NOME EMP_CADASTROU,
                 EMP_CAD.SEQ_EMPRESA EMPRESA_CADASTROU,
-                CONCAT(EMP_DES.NOME, ' - ', EMP_DES.SEQ_EMPRESA) EMP_DESTINO,
+                EMP_DES.NOME EMP_DESTINO,
                 CONCAT(CITY_INI.NOME, ' - ', ESTADO_INI.SIGLA) LOCAL_PARTIDA,
                 CONCAT(CITY_FIN.NOME, ' - ', ESTADO_FIN.SIGLA) LOCAL_DESTINO
             FROM

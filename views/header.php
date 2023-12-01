@@ -83,61 +83,71 @@
     <div class="nav" id="navbar" style="padding-left: 20px;">
         <nav class="nav__container">
             <div>
-                <a href="<?= URL ?>index" class="nav__link nav__logo">
-                    <i class='bx bx-home nav__icon'></i>
-                    <span class="nav__logo-name">Início</span>
-                </a>
+                <?php if(isset($_SESSION['logado'])) { ?>
+                    <?php if($_SESSION['TIPO_USUARIO'] == 1) { ?>
+                        <a href="<?= URL ?>index" class="nav__link nav__logo">
+                            <i class='bx bx-home nav__icon'></i>
+                            <span class="nav__logo-name">Início</span>
+                        </a>
+                    <?php } if($_SESSION['TIPO_USUARIO'] == 2) { ?>
+                        <a href="<?= URL ?>index_empresa" class="nav__link nav__logo">
+                            <i class='bx bx-home nav__icon'></i>
+                            <span class="nav__logo-name">Início</span>
+                        </a>
+                    <?php } }?>
 
                 <div class="nav__list">
                     <div class="nav__items">
-                        <h3 class="nav__subtitle">Perfil</h3>
+                        
+                        <?php if(isset($_SESSION['logado'])) { ?>
+                            <?php if($_SESSION['TIPO_USUARIO'] == 1) { ?>
+                            <h3 class="nav__subtitle">Perfil</h3>
 
-                        <div class="nav__dropdown">
-                            <a href="#" class="nav__link">
-                                <i class='bx bx-user nav__icon'></i>
-                                <span class="nav__name">Opções</span>
-                            <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                            </a>
-                            <div class="nav__dropdown-content">
-                                <a href="<?= URL ?>perfil" class="nav__dropdown-item">Minhas informações</a>
-                            </div>
-                            <!-- <div class="nav__dropdown-content">
-                                <a href="<?= URL ?>#" class="nav__dropdown-item">Minha Carteira</a>
-                            </div> -->
-                            <!-- <div class="nav__dropdown-content">
-                                <a href="<?= URL ?>#" class="nav__dropdown-item">Minhas Entregas</a>
-                            </div> -->
-                        </div>
-                        <div class="nav__dropdown">
-                            <a href="#" class="nav__link">
-                                <i class='bx bxs-truck nav__icon'></i>
-                                <span class="nav__name">Meu caminhão</span>
+                            <div class="nav__dropdown">
+                                <a href="#" class="nav__link">
+                                    <i class='bx bx-user nav__icon'></i>
+                                    <span class="nav__name">Opções</span>
                                 <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                            </a>
-                            <div class="nav__dropdown-content">
-                                <a href="<?= URL ?>cadastrocaminhao" class="nav__dropdown-item">Cadastrar Caminhão</a>
+                                </a>
+                                <div class="nav__dropdown-content">
+                                    <a href="<?= URL ?>perfil" class="nav__dropdown-item">Minhas informações</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="nav__dropdown">
-                            <a href="#" class="nav__link">
-                                <i class='bx bx-signal-5 nav__icon'></i>
-                                <span class="nav__name">Empresas</span>
-                                <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                            </a>
-                            <div class="nav__dropdown-content">
-                                <a href="<?= URL ?>selecionarCarga" class="nav__dropdown-item">Minhas Conversas</a>
+                            <div class="nav__dropdown">
+                                <a href="#" class="nav__link">
+                                    <i class='bx bxs-truck nav__icon'></i>
+                                    <span class="nav__name">Meu caminhão</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+                                <div class="nav__dropdown-content">
+                                    <a href="<?= URL ?>cadastrocaminhao" class="nav__dropdown-item">Cadastrar Caminhão</a>
+                                </div>
                             </div>
-                            <div class="nav__dropdown-content">
-                                <a href="<?= URL ?>cadastroCarga" class="nav__dropdown-item">Postar Cargas</a>
+                        <?php } }?>
+                        
+                        <?php if(isset($_SESSION['logado'])) { ?>
+                            <?php if($_SESSION['TIPO_USUARIO'] == 2) { ?>
+                            <div class="nav__dropdown">
+                                <a href="#" class="nav__link">
+                                    <i class='bx bx-signal-5 nav__icon'></i>
+                                    <span class="nav__name">Empresas</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+                                <div class="nav__dropdown-content">
+                                    <a href="<?= URL ?>selecionarCarga" class="nav__dropdown-item">Minhas Conversas</a>
+                                </div>
+                                <div class="nav__dropdown-content">
+                                    <a href="<?= URL ?>cadastroCarga" class="nav__dropdown-item">Postar Cargas</a>
+                                </div>
                             </div>
-                        </div>
+                        <?php } }?>
                     </div>
                 </div>
             </div>
 
-            <a href="<?= URL ?>login" class="nav__link nav__logout">
+            <a href="<?= URL ?>logout" class="nav__link nav__logout">
                 <i class='bx bx-log-out nav__icon'></i>
-                <span href="<?= URL ?>login" class="nav__name">Sair</span>
+                <span href="<?= URL ?>logout" class="nav__name">Sair</span>
             </a>
         </nav>
     </div>

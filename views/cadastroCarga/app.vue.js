@@ -111,17 +111,27 @@ const AppTemplate = `
                     <div class="col-md-3 margin-input" style="margin-top: 6px;">
                         <ejs-datepicker 
                             floatLabelType="Auto"
-                            v-model="input.DATA_ENTREGA"
                             cssClass="e-outline"
-                            placeholder="Data para Entrega">
+                            ref="data_Retirada"
+                            maxlength="0"
+                            :maskPlaceholder='maskDateRetirada'
+                            :format='dateFormDateRetirada'
+                            :enableMask="true"
+                            v-model="input.DATA_RETIRADA"
+                            placeholder="Data para Retirada">
                         </ejs-datepicker>
                     </div>
                     <div class="col-md-3 margin-input" style="margin-top: 6px;">
                         <ejs-datepicker 
                             floatLabelType="Auto"
-                            v-model="input.DATA_RETIRADA"
                             cssClass="e-outline"
-                            placeholder="Data para Retirada">
+                            ref="data_Entrega"
+                            maxlength="0"
+                            :maskPlaceholder='maskDateEntrega'
+                            :format='dateFormDateEntrega'
+                            :enableMask="true"
+                            v-model="input.DATA_ENTREGA"
+                            placeholder="Data para Entrega">
                         </ejs-datepicker>
                     </div>
                     <div class="col-md-6 margin-input" style="margin-top: 6px;">
@@ -149,6 +159,10 @@ Vue.component('AppVue', {
     template: AppTemplate,
     data: function() {
         return {
+            maskDateRetirada: {day: 'Dia', month: 'Mês', year: 'Ano'},
+            dateFormDateRetirada: 'dd/MM/yyyy',
+            maskDateEntrega: {day: 'Dia', month: 'Mês', year: 'Ano'},
+            dateFormDateEntrega: 'dd/MM/yyyy',
             gridDataSource: [],
             loadTime: null,
             loadingIndicator: { indicatorType: 'Shimmer' },
@@ -246,6 +260,14 @@ Vue.component('AppVue', {
                 alert('Por Favor, Insira a Cidade de Destino da Carga.');
                 return;
             }
+            if(this.input.DATA_RETIRADA == null || this.input.DATA_RETIRADA.length < 7){
+                alert('Por Favor, Insira a Data de Retirada.');
+                return;
+            }
+            if(this.input.DATA_ENTREGA == null || this.input.DATA_ENTREGA.length < 7){
+                alert('Por Favor, Insira a Data de Entrega.');
+                return;
+            }
             // if(this.input.PRODUTO == null){
             //     alert('Por Favor, Insira o Produto.');
             //     return;
@@ -261,10 +283,9 @@ Vue.component('AppVue', {
                 'CIDADE_INICIAL': this.input.CIDADE_INICIAL,
                 'ESTADO_FINAL': this.input.ESTADO_FINAL,
                 'CIDADE_FINAL': this.input.CIDADE_FINAL,
-                // 'DATA_RETIRADA': this.input.DATA_RETIRADA,
-                // 'DATA_ENTREGA': this.input.DATA_ENTREGA,
-                'DESCRICAO': this.input.DESCRICAO,
-                // 'PRODUTO': this.input.PRODUTO
+                'DATA_RETIRADA': this.input.DATA_RETIRADA,
+                'DATA_ENTREGA': this.input.DATA_ENTREGA,
+                'DESCRICAO': this.input.DESCRICAO
             }
             axios.post(BASE + "/cadastroCarga/cadastrarCarga",obj).then((res) => {
                 if(res.data.code == "0"){
@@ -273,6 +294,7 @@ Vue.component('AppVue', {
                 }
                 alert(res.data.msg);
                 this.limparCamposCarga();
+                window.location.href = 'http://localhost/test/projeto_integrador/index_empresa';
             })
         },
         limparCamposCarga(){
@@ -286,6 +308,7 @@ Vue.component('AppVue', {
             this.input.ESTADO_FINAL = null;
             this.input.CIDADE_FINAL = null;
             this.input.DATA_RETIRADA = null;
+            this.input.DATA_ENTREGA = null;
             this.input.DATA_SAIDA = null;
             this.input.DESCRICAO = null;
             this.input.PRODUTO = null;

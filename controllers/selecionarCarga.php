@@ -12,7 +12,7 @@ class SelecionarCarga extends Controller
 
     function index()
     {
-        // Auth::autentica();
+        Auth::autentica();
         $this->view->title = "Selecionar Carga";
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
         array_push($this->view->js, "views/selecionarCarga/app.vue.js");

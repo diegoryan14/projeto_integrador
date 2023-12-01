@@ -56,7 +56,6 @@ class CadastroCarga_Model extends Model
         $post = json_decode(file_get_contents('php://input'));
         // var_dump($post);exit;
         $empresa_destino = $post->EMPRESA_DESTINO;
-        // $empresa_destino = 1;
         $peso = $post->PESO;
         $altura = $post->ALTURA;
         $largura = $post->LARGURA;
@@ -65,10 +64,18 @@ class CadastroCarga_Model extends Model
         $cidadeInicial = $post->CIDADE_INICIAL;
         $estadoFinal = $post->ESTADO_FINAL;
         $cidadeFinal = $post->CIDADE_FINAL;
-        // $dataEntrega = $post->DATA_ENTREGA;
-        // $dataRetirada = $post->DATA_RETIRADA;
         $descricao = $post->DESCRICAO;
-        // $produto = $post->PRODUTO;
+		$dataRetirada = explode('T', $post->DATA_RETIRADA);
+		$dataEntrega = explode('T', $post->DATA_ENTREGA);
+        $dateRetirada = $dataRetirada[0];
+        $dateEntrega = $dataEntrega[0];
+
+        $var_retirada = strtotime($dateRetirada);
+        $var_entrega = strtotime($dateEntrega);
+
+        if($var_retirada > $var_entrega){
+            exit(json_encode(array("code" => "0", "msg" => "Opss! A data de Retirada não pode ser maior que a data de Entrega!!")));
+        }
         
         Session::init();   
         $o = Session::get('SEQ');
@@ -110,15 +117,6 @@ class CadastroCarga_Model extends Model
         else if($cidadeFinal == null){
             exit(json_encode(array("code" => "0", "msg" => "Por favor, selecione a Cidade de Entrega.")));
         }
-        // else if($dataEntrega == null){
-        //     exit(json_encode(array("code" => "0", "msg" => "Por favor, insira a Data de Entrega da Carga.")));
-        // }
-        // else if($dataRetirada == null){
-        //     exit(json_encode(array("code" => "0", "msg" => "Por favor, insira a Data de Rertira da Carga.")));
-        // }
-        // else if($produto == null){
-        //     exit(json_encode(array("code" => "0", "msg" => "Por favor, insira o Produto que será transportado.")));
-        // }
         else {
             $result = $this->db->insert('CADASTRAR_CARGA', array(
                 'EMPRESA_DESTINO' => $empresa_destino,
@@ -131,9 +129,8 @@ class CadastroCarga_Model extends Model
                 'CIDADE_INICIAL' => $cidadeInicial,
                 'ESTADO_FINAL' => $estadoFinal,
                 'CIDADE_FINAL' => $cidadeFinal,
-                // 'DATA_REGISTRO' => 
-                // 'DATA_ENTREGA' => $dataEntrega,
-                // 'DATA_RETIRADA' => $dataRetirada,
+                'DATA_ENTREGA' => $dateEntrega,
+                'DATA_SAIDA' => $dateRetirada,
                 'DESCRICAO' => $descricao
                 // 'PRODUTO' => $produto
             ));

@@ -9,52 +9,56 @@ const AppTemplate = `
                 <div class="teste">
                     <div class="row">
                         <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                            <ejs-dropdownlist 
-                                :dataSource='dataModelo' 
+                            <ejs-textbox
+                                floatLabelType="Auto"
                                 ref="tipo-caminhao"
+                                id="tipo-caminhao"
+                                maxlength="50"
+                                v-model="input.MODELO_CAMINHAO"
                                 style="text-transform: unset;"
                                 cssClass="e-outline"
-                                v-model="input.MODELO_CAMINHAO"
-                                maxlength="50"
-                                placeholder="Modelo*">
-                            </ejs-dropdownlist>
+                                placeholder="Modelo do Caminhão">
+                            </ejs-textbox>
+                        </div>
+                        <div class="col-md-4 margin-input" style="margin-top: 6px;">
+                            <ejs-maskedtextbox
+                                ref="placa-caminhao"
+                                id="placa-caminhao"
+                                mask="LLL#L##"
+                                style="text-transform: upper;"
+                                floatLabelType="Auto"
+                                cssClass="e-outline"
+                                maxlength="7"
+                                placeholder='Placa Caminhão'
+                                v-model="input.PLACA_CAMINHAO">
+                            </ejs-maskedtextbox>
                         </div>
                         <div class="col-md-4 margin-input" style="margin-top: 6px;">
                             <ejs-textbox
                                 floatLabelType="Auto"
-                                ref="placa-caminhao"
-                                maxlength="7"
-                                v-model="input.PLACA_CAMINHAO"
-                                style="text-transform: unset;"
-                                cssClass="e-outline"
-                                placeholder="Placa*">
-                            </ejs-textbox>
-                        </div>
-                        <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                            <ejs-dropdownlist 
-                                :dataSource='dataModeloCarreta' 
-                                floatLabelType="Auto"
                                 ref="tipo-carreta"
+                                id="tipo-carreta"
+                                maxlength="50"
+                                v-model="input.MODELO_CARRETA"
                                 style="text-transform: unset;"
                                 cssClass="e-outline"
-                                v-model="input.MODELO_CARRETA"
-                                maxlength="50"
-                                placeholder="Modelo da Carreta*">
-                            </ejs-dropdownlist>
+                                placeholder="Modelo da Carreta">
+                            </ejs-textbox>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 margin-input" style="margin-top: 6px;">
-                            <ejs-textbox
-                                floatLabelType="Auto"
+                            <ejs-maskedtextbox
                                 ref="placa-carreta"
                                 id="placa-carreta"
-                                maxlength="7"
-                                v-model="input.PLACA_CARRETA"
-                                style="text-transform: unset;"
+                                mask="LLL#L##"
+                                style="text-transform: upper;"
+                                floatLabelType="Auto"
                                 cssClass="e-outline"
-                                placeholder="Placa da carreta*">
-                            </ejs-textbox>
+                                maxlength="7"
+                                placeholder='Placa da Carreta'
+                                v-model="input.PLACA_CARRETA">
+                            </ejs-maskedtextbox>
                         </div>
                         <div class="col-md-8 margin-input" style="margin-top: 6px;">
                             <ejs-textbox
@@ -65,7 +69,7 @@ const AppTemplate = `
                                 v-model="input.DESCRICAO"
                                 style="text-transform: unset;"
                                 cssClass="e-outline"
-                                placeholder="Descrição*">
+                                placeholder="Descrição">
                             </ejs-textbox>
                         </div>
                     </div>
@@ -98,11 +102,19 @@ Vue.component('AppVue', {
         btnClick() {
             window.location.href = 'http://localhost/test/projeto_integrador/cadastroCarga';
         },
-        cadastrarCaminhao(){
-            
-            // var placa = "ABC1234";
-            // const regexPlaca = /^[a-zA-Z]{3}[0-9]{4}$/;
-            
+        getDadosCaminhao(){
+            this.limpar_campos();
+            axios.post(BASE + "/cadastrocaminhao/getDadosCaminhao").then((res) => {
+                if(res.data){
+                    this.input.MODELO_CAMINHAO = res.data[0].MODELO_CAMINHAO;
+                    this.input.PLACA_CAMINHAO = res.data[0].PLACA_CAMINHAO;
+                    this.input.MODELO_CARRETA = res.data[0].MODELO_CARRETA;
+                    this.input.PLACA_CARRETA = res.data[0].PLACA_CARRETA;
+                    this.input.DESCRICAO = res.data[0].DESCRICAO;
+                }
+            })
+        },
+        cadastrarCaminhao(){            
             if(this.input.MODELO_CAMINHAO == null || this.input.MODELO_CAMINHAO.trim() == ''){
                 alert("Por Favor, Insira a Modelo do Caminhão!");
                 return;
@@ -129,6 +141,7 @@ Vue.component('AppVue', {
                 }
                 alert(res.data.msg);
                 this.limpar_campos();
+                this.getDadosCaminhao();
             })
         },
         limpar_campos(){
@@ -140,6 +153,7 @@ Vue.component('AppVue', {
         }
     },
     mounted(){
+        this.getDadosCaminhao();
     }
 })
 

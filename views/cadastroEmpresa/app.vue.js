@@ -7,7 +7,6 @@ const AppTemplate = `
                     <h1 style="color: black;">CADASTRE-SE</h1>
                 </div>
             </div>
-            <!-- ******************NOME*************** -->
             <div class="row">
                 <div class="col-md-12 margin-input" style="margin-top: 6px;">
                     <ejs-textbox 
@@ -18,7 +17,7 @@ const AppTemplate = `
                         cssClass="e-outline"
                         maxlength="60"
                         v-model="input.nome"
-                        placeholder="Nome">
+                        placeholder="Nome da Empresa">
                     </ejs-textbox>
                 </div>
             </div>
@@ -39,14 +38,14 @@ const AppTemplate = `
                 <!-- ******************CPF*************** -->
                 <div class="col-md-6 margin-input" style="margin-top: 6px;">
                     <ejs-maskedtextbox
-                        ref="cpf"
-                        id="cpf"
-                        mask="###.###.###-##"
+                        ref="cnpj"
+                        id="cnpj"
+                        mask="##.###.###/####-##"
                         floatLabelType="Auto"
                         cssClass="e-outline"
                         maxlength="14"
-                        placeholder='CPF'
-                        v-model="input.cpf">
+                        placeholder='CNPJ'
+                        v-model="input.cnpj">
                     </ejs-maskedtextbox>
                 </div>
             </div>
@@ -86,7 +85,7 @@ const AppTemplate = `
                         id="zoomin"
                         content="CADASTRAR"
                         :enableProgress="true"
-                        v-on:click.native="Cadastrar_usuario"
+                        v-on:click.native="Cadastrar_empresa"
                         :spinSettings="spinCenter"
                         :animationSettings="zoomIn"
                         cssClass="e-round-corner">
@@ -111,10 +110,10 @@ Vue.component('AppVue', {
             input: {
                 nome: null,
                 email: null,
-                cpf: null,
+                cnpj: null,
                 senha: null,
                 confirm_senha: null,
-                tipo_usuario: 1, /* 1- Caminhoneiro // 2- Empresa */
+                tipo_usuario: 2, /* 1- Caminhoneiro // 2- Empresa */
             }
         }
     },
@@ -122,9 +121,9 @@ Vue.component('AppVue', {
         btnClick() {
             window.location.href = 'http://localhost/test/projeto_integrador/login';
         },
-        Cadastrar_usuario(){
+        Cadastrar_empresa(){
             if(this.input.nome == null || this.input.nome.trim() == ''){
-                alert('Por Favor, Insira o Nome');
+                alert('Por Favor, Insira o Nome da Empresa');
                 this.$refs.nome.focusIn();
                 return;
             }
@@ -133,9 +132,9 @@ Vue.component('AppVue', {
                 this.$refs.email.focusIn();
                 return;
             }
-            if(this.input.cpf == null || this.input.cpf.trim() == ''){
-                alert('Por Favor, Insira o CPF');
-                this.$refs.cpf.focusIn();
+            if(this.input.cnpj == null || this.input.cnpj.trim() == ''){
+                alert('Por Favor, Insira o CNPJ');
+                this.$refs.cnpj.focusIn();
                 return;
             }
             if(this.input.senha == null || this.input.senha.trim() == ''){
@@ -151,26 +150,26 @@ Vue.component('AppVue', {
             var obj = {
                 'NOME': this.input.nome,
                 'EMAIL': this.input.email,
-                'CPF': this.input.cpf,
+                'CNPJ': this.input.cnpj,
                 'SENHA': this.input.senha,
                 'CONFIRM_SENHA': this.input.confirm_senha,
                 'TIPO_USUARIO': this.input.tipo_usuario
             }
-            axios.post(BASE + "/cadastroLogin/Cadastrar_usuario",obj).then((res) => {
+            axios.post(BASE + "/cadastroEmpresa/Cadastrar_empresa",obj).then((res) => {
                 if(res.data.code == '0'){
                     alert(res.data.msg);
                     return;
                 }
                 alert(res.data.msg);
                 this.limpar_campos();
-                window.location.href = BASE + '/index/';
+                window.location.href = BASE + '/index_empresa/';
                 return;
             })
         },
         limpar_campos(){
             this.input.nome = null;
             this.input.email = null;
-            this.input.cpf = null;
+            this.input.cnpj = null;
             this.input.senha = null;
             this.input.confirm_senha = null;
         }

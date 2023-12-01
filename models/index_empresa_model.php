@@ -13,8 +13,7 @@ class Index_empresa_Model extends Model
         
         Session::init();   
         $o = Session::get('SEQ');
-        // $empresa_cadastrou = $o;
-        $empresa_cadastrou = 1;
+        $empresa_cadastrou = $o;
 
         $dados=array(':par_EMPRESA' => $empresa_cadastrou);
         $result = $this->db->select("SELECT
@@ -28,8 +27,8 @@ class Index_empresa_Model extends Model
             CAD_CARGA.PRECO,
             CAD_CARGA.CONTEUDO_CARGA,
             CAD_CARGA.DESCRICAO,
-            CONCAT(EMP_CAD.NOME, ' - ', EMP_CAD.SEQ_EMPRESA) EMP_CADASTROU,
-            CONCAT(EMP_DES.NOME, ' - ', EMP_DES.SEQ_EMPRESA) EMP_DESTINO,
+            EMP_CAD.NOME EMP_CADASTROU,
+            EMP_DES.NOME EMP_DESTINO,
             CONCAT(CITY_INI.NOME, ' - ', ESTADO_INI.SIGLA) LOCAL_PARTIDA,
             CONCAT(CITY_FIN.NOME, ' - ', ESTADO_FIN.SIGLA) LOCAL_DESTINO,
             (

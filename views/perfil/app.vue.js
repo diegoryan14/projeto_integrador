@@ -66,7 +66,7 @@ const AppTemplate = `
                                 mask="(##)#####-####"
                                 floatLabelType="Auto"
                                 cssClass="e-outline"
-                                maxlength="11"
+                                maxlength="12"
                                 placeholder='Celular'
                                 v-model="input.CELULAR">
                             </ejs-maskedtextbox>
@@ -101,8 +101,8 @@ Vue.component('AppVue', {
                 this.input.NOME = res.data[0].NOME;
                 this.input.EMAIL = res.data[0].EMAIL;
                 this.input.CPF = res.data[0].CPF;
-                // this.input.CELULAR = res.data[0].CELULAR;
-                // this.input.IDADE = res.data[0].IDADE;
+                this.input.CELULAR = `${res.data[0].CELULAR}`;
+                this.input.IDADE = `${res.data[0].IDADE}` + '9';
             })
         },
         salvarPerfil() {

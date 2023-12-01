@@ -33,7 +33,6 @@ class login_Model extends Model
             Session::init();
             Session::set('CPF', $result[0]->CPF);
             Session::set('logado', true);
-            Session::set('SENHA', $result[0]->SENHA);
             Session::set('NOME', $result[0]->NOME);
             Session::set('TIPO_USUARIO', $result[0]->TIPO_USUARIO);
             Session::set('SEQ', $result[0]->SEQ_USUARIO);
@@ -44,6 +43,7 @@ class login_Model extends Model
         }
         echo(json_encode($msg));
     }
+
     public function LoginEmp()
     {
         $post = json_decode(file_get_contents('php://input'));
@@ -54,7 +54,7 @@ class login_Model extends Model
         $result = $this->db->select("SELECT
                                         SEQ_EMPRESA,
                                         NOME,
-                                        CPF,
+                                        CNPJ,
                                         SENHA,
                                         TIPO_USUARIO
                                     FROM
@@ -66,9 +66,8 @@ class login_Model extends Model
         if (count($result) > 0) {
             // login
             Session::init();
-            Session::set('CPF', $result[0]->CPF);
+            Session::set('CPF', $result[0]->CNPJ);
             Session::set('logado', true);
-            Session::set('SENHA', $result[0]->SENHA);
             Session::set('NOME', $result[0]->NOME);
             Session::set('TIPO_USUARIO', $result[0]->TIPO_USUARIO);
             Session::set('SEQ', $result[0]->SEQ_EMPRESA);

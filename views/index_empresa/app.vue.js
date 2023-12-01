@@ -4,7 +4,7 @@ const AppTemplate = `
         <div class="col-md-12">
             <div class="card-body" style="margin-top: 1em">
                 <div class="h4-sel-carga">
-                    <h4 class="test">Minhas Carags Cadastradas</h4>
+                    <h4 class="test">Minhas Cargas Cadastradas</h4>
                 </div>
                 <div>
                     <ejs-grid
@@ -18,12 +18,10 @@ const AppTemplate = `
                         <e-columns>
                             <e-column field='EMP_CADASTROU' headerText='Empresa Cadastrou' clipMode='EllipsisWithTooltip' width=150></e-column>
                             <e-column field='LOCAL_PARTIDA' headerText='Endereço Empresa' clipMode='EllipsisWithTooltip' width=150></e-column>
-                            <e-column field='DATA_SAIDA' headerText='Data Saída' clipMode='EllipsisWithTooltip' width=120></e-column>
-                            <e-column field='DATA_ENTREGA' headerText='Data Entrega' clipMode='EllipsisWithTooltip' width=120></e-column>
+                            <e-column field='DATA_SAIDA' :format='formatoptions1' headerText='Data Saída' clipMode='EllipsisWithTooltip' width=120></e-column>
+                            <e-column field='DATA_ENTREGA' :format='formatoptions2' headerText='Data Entrega' clipMode='EllipsisWithTooltip' width=120></e-column>
                             <e-column field='EMP_DESTINO' headerText='Empresa Destino' clipMode='EllipsisWithTooltip' width=150></e-column>
                             <e-column field='LOCAL_DESTINO' headerText='Endereço Destino' clipMode='EllipsisWithTooltip' width=150></e-column>
-                            <e-column field='NOME' headerText='Nome da Carga' clipMode='EllipsisWithTooltip' width=110></e-column>
-                            <e-column field='CONTEUDO_CARGA' headerText='Produto' clipMode='EllipsisWithTooltip' width=100></e-column>
                             <e-column field='DESCRICAO' headerText='Descrição' clipMode='EllipsisWithTooltip' width=150></e-column>
                             <e-column field='PRECO' headerText='Preço(R$)' clipMode='EllipsisWithTooltip' width=110></e-column>
                             <e-column field='ALTURA' headerText='Altura(m)' clipMode='EllipsisWithTooltip' width=110></e-column>
@@ -44,6 +42,8 @@ Vue.component('AppVue', {
     data: function() {
         return {
             grid_Cargas: [],
+            formatoptions1: { type: 'dateTime', format: 'dd/MM/y' },
+            formatoptions2: { type: 'dateTime', format: 'dd/MM/y' },
             templateButtons: function () {
 				return {
 					template: Vue.component('templateButtons', {
@@ -85,6 +85,14 @@ Vue.component('AppVue', {
     methods: {
         get_cargas(){
             axios.post(BASE + "/index_empresa/get_cargas").then((res) => {
+                res.data.forEach(e => {
+                    if(e.DATA_SAIDA != null){
+                        e.DATA_SAIDA = new Date(e.DATA_SAIDA);
+                    }
+                    if(e.DATA_ENTREGA != null){
+                        e.DATA_ENTREGA = new Date(e.DATA_ENTREGA);
+                    }
+                });
                 this.grid_Cargas = res.data;
             })
         },

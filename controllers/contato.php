@@ -12,7 +12,7 @@ class Contato extends Controller
 
     function index()
     {
-        // Auth::autentica();
+        Auth::autentica();
         $this->view->title = "Contato";
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
         array_push($this->view->js, "views/contato/app.vue.js");

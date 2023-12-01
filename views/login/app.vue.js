@@ -108,7 +108,7 @@ const AppTemplate = `
                     </div>              
                     <div class="col-md-12 margin-input">
                         <div class="col-md-8 margin-input">
-                            <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='btnClick'>Não tem login? Cadastre-se</ejs-button><br>
+                            <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='btnClickEmp'>Não tem login? Cadastre-se</ejs-button><br>
                             <ejs-button id="botao-cadastrar" cssClass='e-link' v-on:click.native='infoCam'>Logar como Caminhoneiro</ejs-button>
                         </div>
                     </div>
@@ -146,6 +146,9 @@ Vue.component('AppVue', {
         },
         btnClick() {
             window.location.href = 'http://localhost/test/projeto_integrador/cadastroLogin';
+        },
+        btnClickEmp() {
+            window.location.href = 'http://localhost/test/projeto_integrador/cadastroEmpresa';
         },
         Login(){
             if(this.input.cpf == null || this.input.cpf.trim() == ''){

@@ -12,7 +12,7 @@ class Index_empresa extends Controller
 
     function index()
     {
-        // Auth::autentica();
+        Auth::autentica();
         $this->view->title = "Home";
         /*Os array push devem ser feitos antes de instanciar o header e footer.*/
         array_push($this->view->js, "views/index_empresa/app.vue.js");
